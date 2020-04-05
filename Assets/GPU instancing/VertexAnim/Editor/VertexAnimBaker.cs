@@ -11,21 +11,22 @@ public class AnimData
 
     public int vertexCount;
     public int mapWidth;
-    //public List<AnimationState> animClips;
+    public List<AnimationState> animClips;
     public string name;
 
-    private Animator animation;
+    private Animation animation;
     private SkinnedMeshRenderer skin;
 
     #endregion
 
-    public AnimData(Animator anim, SkinnedMeshRenderer smr, string goName)
+    public AnimData(Animation anim, SkinnedMeshRenderer smr, string goName)
     {
         vertexCount = smr.sharedMesh.vertexCount;
-        mapWidth = Mathf.NextPowerOfTwo(vertexCount);
-        //animClips = new List<AnimationState>(anim.Cast<AnimationState>());
-        //Debug.LogError("animclips count " + animClips.Count);
         animation = anim;
+        mapWidth = vertexCount;//Mathf.NextPowerOfTwo(vertexCount);
+        animClips = new List<AnimationState>();
+        animClips.Add(animation["atk_qiang"]);
+        //animClips = new List<AnimationState>(anim.Cast<AnimationState>());
         skin = smr;
         name = goName;
     }
@@ -50,7 +51,7 @@ public class AnimData
             return;
         }
 
-        //this.animation.Sample();
+        this.animation.Sample();
     }
 
     private void BakeMesh(ref Mesh m)
@@ -118,7 +119,8 @@ public class VertexAnimBaker : EditorWindow
             return;
         }
 
-        Animator anim = go.GetComponentInChildren<Animator>();
+        //Animation anim = go.GetComponentInChildren<Animation>();
+        Animation anim = go.GetComponent<Animation>();
         SkinnedMeshRenderer smr = go.GetComponentInChildren<SkinnedMeshRenderer>();
 
         if (anim == null || smr == null)
@@ -129,36 +131,44 @@ public class VertexAnimBaker : EditorWindow
         _bakedMesh = new Mesh();
         AnimData animData = new AnimData(anim, smr, go.name);
 
-        BakeAnimClip(anim.GetCurrentAnimatorClipInfo(0)[0].clip, animData);
+        BakeAnimClip(animData.animClips[0], animData);
     }
 
-    private void BakeAnimClip(AnimationClip animState, AnimData animData)
+    private void BakeAnimClip(AnimationState animState, AnimData animData)
     {
-        int curClipFrame = (int)( animState.frameRate * animState.length);
+        int curClipFrame = (int)(animState.clip.frameRate * animState.length);
         float perFrameTime = animState.length / curClipFrame; ;
         float sampleTime = 0;
 
         Texture2D animMapTex = new Texture2D(animData.mapWidth, curClipFrame, TextureFormat.RGBAHalf, false);
+        Texture2D normalMapTex = new Texture2D(animData.mapWidth, curClipFrame, TextureFormat.RGBAHalf, false);
         animMapTex.name = animState.name + ".animMap";
+        normalMapTex.name = animState.name + ".normalMap";
         animData.AnimationPlay(animState.name);
 
         for (int i = 0; i < curClipFrame; i++)
         {
-            //animState.time = sampleTime;
-            animState.SampleAnimation(targetGo, sampleTime);
-
+            animState.time = sampleTime;
             animData.SampleAnimAndBakeMesh(ref _bakedMesh);
 
             for (int j = 0; j < _bakedMesh.vertexCount; j++)
             {
                 Vector3 vertex = _bakedMesh.vertices[j];
+                Vector3 normal = _bakedMesh.normals[j];
                 animMapTex.SetPixel(j, i, new Color(vertex.x, vertex.y, vertex.z));
+                normalMapTex.SetPixel(j, i, new Color(normal.x, normal.y, normal.z));
             }
 
             sampleTime += perFrameTime;
         }
         animMapTex.Apply();
+        normalMapTex.Apply();
+
+        animState.time = 0;
+        animData.SampleAnimAndBakeMesh(ref _bakedMesh);
+
         //保存顶点位子映射图
-        AssetDatabase.CreateAsset(animMapTex, "Assets/GPU instancing/VertexAnim/"+animData.name +".asset");
+        AssetDatabase.CreateAsset(animMapTex, "Assets/GPU instancing/VertexAnim/"+animData.name+animData.animClips[0].name +"_vertexMap.asset");
+        AssetDatabase.CreateAsset(normalMapTex, "Assets/GPU instancing/VertexAnim/"+animData.name+animData.animClips[0].name +"_normalMap.asset");
     }
 }
