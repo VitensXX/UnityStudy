@@ -30,13 +30,13 @@ public class ArmyGPUInstancingTest : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             MaterialPropertyBlock props = new MaterialPropertyBlock();
-            //props.SetFloat("_AnimState", i);
-            props.SetFloat("_AnimLen", i+1);
+            props.SetFloat("_AnimState", i);
+            props.SetFloat("_AnimLen", 1);
 
-            float r = Random.Range(0.0f, 1.0f);
-            float g = Random.Range(0.0f, 1.0f);
-            float b = Random.Range(0.0f, 1.0f);
-            props.SetColor("_Tint", new Color(r, g, b));
+            //float r = Random.Range(0.0f, 1.0f);
+            //float g = Random.Range(0.0f, 1.0f);
+            //float b = Random.Range(0.0f, 1.0f);
+            //props.SetColor("_Tint", new Color(r, g, b));
 
             _armyId2Renderer[i].SetPropertyBlock(props);
         }
