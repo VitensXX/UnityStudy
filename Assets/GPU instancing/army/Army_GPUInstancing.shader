@@ -43,10 +43,10 @@
 			float4 _AnimMap_Idle_TexelSize;//x == 1/width
 
             sampler2D _AnimMap_Atk;
-            float _AnimLen;
+            //float _AnimLen;
 
             UNITY_INSTANCING_BUFFER_START(Props)
-                //UNITY_DEFINE_INSTANCED_PROP(fixed, _AnimLen)
+                UNITY_DEFINE_INSTANCED_PROP(fixed, _AnimLen)
                 UNITY_DEFINE_INSTANCED_PROP(fixed, _AnimState)
                 UNITY_DEFINE_INSTANCED_PROP(fixed4, _Tint)
             UNITY_INSTANCING_BUFFER_END(Props)
@@ -58,7 +58,7 @@
                 UNITY_TRANSFER_INSTANCE_ID(v, o); // necessary only if you want to access instanced properties in the fragment Shader
 
                 //float speed = _AnimLen;
-                float f = _Time.y / _AnimLen;
+                float f = _Time.y / UNITY_ACCESS_INSTANCED_PROP(Props, _AnimLen);
 
 				fmod(f, 1.0);
 
