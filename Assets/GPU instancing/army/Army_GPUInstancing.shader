@@ -54,7 +54,7 @@
             v2f vert (appdata v, uint vid : SV_VertexID)
             {
                 v2f o;
-                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_SETUP_INSTANCE_ID(v);//Use this to make the instance ID accessible to Shader functions. It must be used at the very beginning of a vertex Shader, and is optional for fragment Shaders.
                 UNITY_TRANSFER_INSTANCE_ID(v, o); // necessary only if you want to access instanced properties in the fragment Shader
 
                 //float speed = _AnimLen;

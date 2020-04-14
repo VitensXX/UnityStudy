@@ -42,7 +42,12 @@ public class ArmyGPUInstancingTest : MonoBehaviour
         CreateArmyInstancing();
         CreateNormal();
 
-        stateText.text = (isGPUInstancing ? "GPU Instancing" : "Normal") + "   Count:" + gridX * gridY;
+        RefreshStateTip();
+    }
+
+    void RefreshStateTip()
+    {
+        stateText.text = (isGPUInstancing ? "GPU Instancing" : "Normal") + "   Army Count:" + gridX * gridY;
     }
 
     void CreateArmyInstancing()
@@ -141,7 +146,7 @@ public class ArmyGPUInstancingTest : MonoBehaviour
             NormalAnchor.gameObject.SetActive(true);
         }
 
-        stateText.text = (isGPUInstancing ? "GPU Instancing" : "Normal") + "   Count:" + gridX * gridY;
+        RefreshStateTip();
 
         BtnAction.SetActive(isGPUInstancing);
         BtnColor.SetActive(isGPUInstancing);
@@ -204,7 +209,7 @@ public class ArmyGPUInstancingTest : MonoBehaviour
         CreateArmyInstancing();
         CreateNormal();
 
-        stateText.text = (isGPUInstancing ? "GPU Instancing" : "Normal") + "   Count:" + gridX * gridY;
+        RefreshStateTip();
     }
 
     Vector3 _lastMousePos = Vector3.zero;
@@ -221,7 +226,6 @@ public class ArmyGPUInstancingTest : MonoBehaviour
             Vector3 curMousePos = Input.mousePosition;
             float xMove = curMousePos.x - _lastMousePos.x;
             float yMove = curMousePos.y - _lastMousePos.y;
-            //Debug.LogError(xMove+" "+yMove);
 
             Vector3 camLastPos = cam.transform.localPosition;
             cam.transform.localPosition = new Vector3(camLastPos.x - xMove * moveSpeed * Time.deltaTime, camLastPos.y, camLastPos.z - yMove * moveSpeed * Time.deltaTime);
