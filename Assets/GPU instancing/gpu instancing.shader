@@ -1,4 +1,4 @@
-﻿Shader "vitens/gpu instancing"
+﻿Shader "Vitens/Gpu instancing"
 {
     Properties
     {

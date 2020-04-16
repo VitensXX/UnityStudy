@@ -1,4 +1,4 @@
-﻿Shader "vitens/circle"
+﻿Shader "Vitens/Circle"
 {
     Properties
     {

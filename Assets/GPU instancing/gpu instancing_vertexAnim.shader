@@ -1,4 +1,4 @@
-﻿Shader "vitens/gpu instancing_vertexAnim"
+﻿Shader "Vitens/Gpu Instancing_vertexAnim"
 {
     Properties
     {

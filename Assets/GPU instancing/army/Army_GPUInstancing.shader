@@ -1,4 +1,4 @@
-﻿Shader "vitens/army_gpu_instancing"
+﻿Shader "Vitens/Army_Gpu_Instancing"
 {
      Properties
     {
