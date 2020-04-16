@@ -9,7 +9,7 @@ Shader "Battle/Scene"
 	}
 	SubShader
 	{
-		Tags { "RenderType" = "Scene" "LightMode" = "ForwardBase"}
+		Tags { "BattleType" = "Scene" "LightMode" = "ForwardBase"}
 
 		Pass
 		{
@@ -19,6 +19,7 @@ Shader "Battle/Scene"
 			#pragma fragment frag
 			#include "UnityCG.cginc"
 			#include "Lighting.cginc"
+			#pragma multi_compile_fwdbase
 
 			struct appdata
 			{
@@ -30,7 +31,7 @@ Shader "Battle/Scene"
 			struct v2f
 			{
 				float2 uv : TEXCOORD0;
-				float4 vertex : SV_POSITION;
+				float4 pos : SV_POSITION;
 				fixed4 color : COLOR;
 			};
 
@@ -42,7 +43,7 @@ Shader "Battle/Scene"
 			v2f vert(appdata v)
 			{
 				v2f o;
-				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 
 				//漫反射
@@ -50,7 +51,7 @@ Shader "Battle/Scene"
 				fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
 				fixed3 lambert = max(0, dot(worldNormal, worldLightDir));
 				o.color = fixed4(lambert * _Diffuse.rgb * _LightColor0.rgb + fixed3(1,1,1), 1);
-
+				
 				return o;
 			}
 
@@ -63,4 +64,5 @@ Shader "Battle/Scene"
 			ENDCG
 		}
 	}
+	Fallback "Diffuse"
 }

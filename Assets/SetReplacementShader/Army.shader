@@ -9,7 +9,7 @@ Shader "Battle/Army"
 	}
 	SubShader
 	{
-		Tags { "RenderType" = "Army" "LightMode" = "ForwardBase"}
+		Tags { "BattleType" = "Army" "LightMode" = "ForwardBase"}
 
 		Pass
 		{
@@ -48,17 +48,17 @@ Shader "Battle/Army"
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 
 				//漫反射
-				float3 worldNormal = normalize(UnityObjectToWorldNormal(v.normal));
-				fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
-				fixed3 lambert = max(0, dot(worldNormal, worldLightDir));
-				o.color = fixed4(lambert * _Diffuse.rgb * _LightColor0.rgb + fixed3(1,1,1), 1);
+				//float3 worldNormal = normalize(UnityObjectToWorldNormal(v.normal));
+				//fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
+				//fixed3 lambert = max(0, dot(worldNormal, worldLightDir));
+				//o.color = fixed4(lambert * _Diffuse.rgb * _LightColor0.rgb + fixed3(1,1,1), 1);
 
 				return o;
 			}
 
 			fixed4 frag(v2f i) : SV_Target
 			{
-				fixed4 col = tex2D(_MainTex, i.uv) * _Tint * i.color;
+				fixed4 col = tex2D(_MainTex, i.uv) * _Tint;
 
 				//受击闪白处理
 				col.rgb += _ColorGlitter;

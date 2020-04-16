@@ -10,9 +10,9 @@
 #define COLOR_BLACK fixed3(0, 0, 0)
 
 //闪烁间隔 黄色持续时间 单位秒,但这个时间会受timeScale影响
-#define FLASH_COLOR_YELLOE_DURATION 0.4h
+#define FLASH_COLOR_YELLOE_DURATION 0.4h * 0.15h
 //白色持续时间
-#define FLASH_COLOR_WHITE_DURATION 0.2h
+#define FLASH_COLOR_WHITE_DURATION 0.2h * 0.15h
 
 
 // linear change 0 -> 1 -> 0...
@@ -95,8 +95,17 @@ v2f_3d vert_3d(appdata v)
 
 	fixed3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 	fixed3 worldNormal = normalize(UnityObjectToWorldNormal(v.normal));
-	fixed3 worldViewDir = normalize(UnityWorldSpaceViewDir(worldPos));
-	o.specular = pow(1.0 - abs(dot(worldViewDir, worldNormal)), 0.3h);
+
+	//#ifdef DIRECTIONAL
+	//有光照的模式
+	fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
+	o.specular = pow(abs(dot(worldLightDir, worldNormal)), 0.3h);
+	//#else
+	//无光照
+	//fixed3 worldViewDir = normalize(UnityWorldSpaceViewDir(worldPos));
+	//o.specular = pow(1.0 - abs(dot(worldViewDir, worldNormal)), 0.3h);
+	//#endif
+	
 	
 	return o;
 }
@@ -138,6 +147,7 @@ v2f_3d vert_3d_black(appdata v)
 
 fixed4 frag_3d_black(v2f_3d i) : SV_Target
 {
+	
 	fixed alpha = tex2D(_MainTex, i.uv).a;
 	fixed4 col = fixed4(1, 1, 1, alpha);
 	col.rgb *= i.specular;

@@ -7,7 +7,7 @@
 
 	SubShader
 	{
-		Tags { "RenderType" = "Scene" "Queue" = "Transparent"}
+		Tags { "BattleType" = "Scene" "Queue" = "Transparent"}
 		Pass
 		{
 			CGPROGRAM
@@ -21,7 +21,7 @@
 
 	SubShader
 	{
-		Tags { "RenderType" = "Army" "Queue" = "Transparent"}
+		Tags { "BattleType" = "Army" "Queue" = "Transparent"}
 		Pass
 		{
 			Blend SrcAlpha OneMinusSrcAlpha
