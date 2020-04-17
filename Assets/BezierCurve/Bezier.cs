@@ -8,12 +8,11 @@ public class Bezier : MonoBehaviour
     public Slider slider;
     public GameObject Ball;
     public LineRenderer lineRenderer;
-    //public LineRenderer lineRenderer2;
 
     Vector3 A = new Vector3(-10, 10, 0);
     Vector3 B = new Vector3(0, 0, 0);
     Vector3 C = new Vector3(10, 10, 0);
-    // Start is called before the first frame update
+    Vector3 D = new Vector3(20, -10, 0);
 
     Dictionary<int, LineRenderer> _lineCache = new Dictionary<int, LineRenderer>();
 
@@ -23,6 +22,7 @@ public class Bezier : MonoBehaviour
         points.Add(A);
         points.Add(B);
         points.Add(C);
+        points.Add(D);
 
         lineRenderer.positionCount = points.Count;
         for (int i = 0; i < points.Count; i++)
@@ -66,21 +66,23 @@ public class Bezier : MonoBehaviour
         {
             p.Add(LerpPoint(points[i], points[i + 1], lerp));
         }
-        //if(p.Count == 2)
-        //{
 
-        LineRenderer line;
-        _lineCache.TryGetValue(p.Count, out line);
-        if(line == null)
+        //画线操作
+        if (p.Count >= 2)
         {
-            line = new GameObject("line", typeof(LineRenderer)).GetComponent<LineRenderer>();
-            _lineCache.Add(p.Count, line);
-        }
-
-        line.positionCount = p.Count;
-        for (int i = 0; i < p.Count; i++)
-        {
-            line.SetPosition(i, p[i]);
+            LineRenderer line;
+            _lineCache.TryGetValue(p.Count, out line);
+            if (line == null)
+            {
+                line = new GameObject("line", typeof(LineRenderer)).GetComponent<LineRenderer>();
+                line.startWidth = 0.1f;
+                _lineCache.Add(p.Count, line);
+            }
+            line.positionCount = p.Count;
+            for (int i = 0; i < p.Count; i++)
+            {
+                line.SetPosition(i, p[i]);
+            }
         }
 
         return BezierCurve(lerp, p);

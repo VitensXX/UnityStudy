@@ -8,7 +8,6 @@ public class ShaderFeatureAndMultiCompileTest : MonoBehaviour
     public Image shaderFeature;
     public Image multiCompile;
 
-    bool _isRed = false;
     Material _matShaderFeature;
     Material _matMultiCompile;
 
