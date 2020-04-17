@@ -23,6 +23,8 @@ namespace Battle
         void Start()
         {
             //GO_missionDetails = transform.Find("Content/GO_missionDetails").gameObject;
+            _animCtrl = transform.Find("footman").GetComponent<playerControl>();
+            _mat = transform.Find("footman/Footman_Mesh").GetComponent<Renderer>().material;
         }
 
         // Update is called once per frame
@@ -73,12 +75,18 @@ namespace Battle
         Coroutine _dying;
         public void Dying()
         {
+            if(_dying != null)
+            {
+                StopCoroutine(_dying);
+            }
+
             _dying = StartCoroutine(dying());
         }
 
         public void StopDying()
         {
             StopCoroutine(_dying);
+            _mat.SetColor("_ColorGlitter", Color.black);
         }
 
         IEnumerator dying()
@@ -86,9 +94,9 @@ namespace Battle
             while (true)
             {
                 _mat.SetColor("_ColorGlitter", new Color(0.3f, 0, 0));
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.1f);
                 _mat.SetColor("_ColorGlitter", Color.black);
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.1f);
             }
         }
     }

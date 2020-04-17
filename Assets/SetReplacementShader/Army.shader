@@ -5,7 +5,8 @@ Shader "Battle/Army"
 	{
 		_MainTex("Texture", 2D) = "white" {}
 		_Tint("Tint", color) = (1,1,1,1)
-		_Diffuse("Diffuse", color) = (1,1,1,1)
+		//_Diffuse("Diffuse", color) = (1,1,1,1)
+		_ColorGlitter("glitter", color) = (0,0,0,0)
 	}
 	SubShader
 	{
@@ -33,6 +34,7 @@ Shader "Battle/Army"
 				float2 uv : TEXCOORD0;
 				float4 vertex : SV_POSITION;
 				fixed4 color : COLOR;
+				fixed specular : TEXCOORD1;
 			};
 
 			sampler2D _MainTex;
@@ -53,6 +55,11 @@ Shader "Battle/Army"
 				//fixed3 lambert = max(0, dot(worldNormal, worldLightDir));
 				//o.color = fixed4(lambert * _Diffuse.rgb * _LightColor0.rgb + fixed3(1,1,1), 1);
 
+				fixed3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+				fixed3 worldNormal = normalize(UnityObjectToWorldNormal(v.normal));
+				fixed3 worldViewDir = normalize(UnityWorldSpaceViewDir(worldPos));
+				o.specular = pow(abs(dot(worldViewDir, worldNormal)), 20);
+
 				return o;
 			}
 
@@ -61,7 +68,8 @@ Shader "Battle/Army"
 				fixed4 col = tex2D(_MainTex, i.uv) * _Tint;
 
 				//受击闪白处理
-				col.rgb += _ColorGlitter;
+				//col.rgb += _ColorGlitter;
+				col += i.specular;
 
 				return col;
 			}
