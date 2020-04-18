@@ -96,7 +96,7 @@ v2f_3d vert_3d(appdata v)
 	fixed3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
 	fixed3 worldNormal = normalize(UnityObjectToWorldNormal(v.normal));
 
-	//#ifdef DIRECTIONAL
+	//#ifdef USING_DIRECTIONAL_LIGHT
 	//有光照的模式
 	fixed3 worldLightDir = normalize(_WorldSpaceLightPos0.xyz);
 	o.specular = pow(abs(dot(worldLightDir, worldNormal)), 0.3h);

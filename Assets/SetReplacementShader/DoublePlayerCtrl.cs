@@ -83,10 +83,9 @@ namespace Battle
             _armyViewRed.SetAction(ArmyView.AnimAction.Die);
 
             Shader killEffect = Shader.Find("Hidden/KillEffect");
-            Time.timeScale = 0.15f;
+            Time.timeScale = 0.15f;//慢动作
             Camera.main.SetReplacementShader(killEffect, "BattleType");
             yield return new WaitForSecondsRealtime(3);
-            //_redMat.SetColor("_ColorGlitter", Color.black);
             Time.timeScale = 1;
             Camera.main.ResetReplacementShader();
         }

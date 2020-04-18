@@ -55,10 +55,10 @@ Shader "Battle/Army"
 				//fixed3 lambert = max(0, dot(worldNormal, worldLightDir));
 				//o.color = fixed4(lambert * _Diffuse.rgb * _LightColor0.rgb + fixed3(1,1,1), 1);
 
-				fixed3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
-				fixed3 worldNormal = normalize(UnityObjectToWorldNormal(v.normal));
-				fixed3 worldViewDir = normalize(UnityWorldSpaceViewDir(worldPos));
-				o.specular = pow(abs(dot(worldViewDir, worldNormal)), 20);
+				//fixed3 worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+				//fixed3 worldNormal = normalize(UnityObjectToWorldNormal(v.normal));
+				//fixed3 worldViewDir = normalize(UnityWorldSpaceViewDir(worldPos));
+				//o.specular = pow(abs(dot(worldViewDir, worldNormal)), 20);
 
 				return o;
 			}
@@ -68,8 +68,7 @@ Shader "Battle/Army"
 				fixed4 col = tex2D(_MainTex, i.uv) * _Tint;
 
 				//受击闪白处理
-				//col.rgb += _ColorGlitter;
-				col += i.specular;
+				col.rgb += _ColorGlitter;
 
 				return col;
 			}
