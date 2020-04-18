@@ -23,15 +23,7 @@ public class Bezier : MonoBehaviour
         points.Add(B);
         points.Add(C);
         points.Add(D);
-
-        lineRenderer.positionCount = points.Count;
-        for (int i = 0; i < points.Count; i++)
-        {
-            lineRenderer.SetPosition(i, points[i]);
-        }
-
-        //lineRenderer2.positionCount = 2;
-        _lineCache[points.Count] = lineRenderer;
+        DrawLine(points);
     }
 
     // Update is called once per frame
@@ -70,22 +62,28 @@ public class Bezier : MonoBehaviour
         //画线操作
         if (p.Count >= 2)
         {
-            LineRenderer line;
-            _lineCache.TryGetValue(p.Count, out line);
-            if (line == null)
-            {
-                line = new GameObject("line", typeof(LineRenderer)).GetComponent<LineRenderer>();
-                line.startWidth = 0.1f;
-                _lineCache.Add(p.Count, line);
-            }
-            line.positionCount = p.Count;
-            for (int i = 0; i < p.Count; i++)
-            {
-                line.SetPosition(i, p[i]);
-            }
+            DrawLine(p);
         }
 
         return BezierCurve(lerp, p);
+    }
+
+    void DrawLine(List<Vector3> points)
+    {
+        int count = points.Count;
+        LineRenderer line;
+        _lineCache.TryGetValue(count, out line);
+        if (line == null)
+        {
+            line = new GameObject("line", typeof(LineRenderer)).GetComponent<LineRenderer>();
+            line.startWidth = 0.1f;
+            _lineCache.Add(count, line);
+        }
+        line.positionCount = count;
+        for (int i = 0; i < count; i++)
+        {
+            line.SetPosition(i, points[i]);
+        }
     }
 
     void Recovery()
