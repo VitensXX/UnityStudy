@@ -1,18 +1,14 @@
-﻿Shader "Vitens/Circle"
+﻿//圆角处理
+Shader "Vitens/CircularCorner"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _ClipRange("Clip Range", Range(0, 0.7071)) = 0.5
-        _Outline("Outline", Range(0, 0.2)) = 0
-        _OutlineColor("Outline color", COLOR) = (1,1,1,1)
     }
     SubShader
     {
         Tags { "RenderType"="Opaque" }
         LOD 100
-
-        blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
@@ -35,9 +31,6 @@
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            float _ClipRange;
-            float _Outline;
-            fixed4 _OutlineColor;
 
             v2f vert (appdata v)
             {
@@ -50,21 +43,6 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = tex2D(_MainTex, i.uv);
-
-                //裁剪 step(a,x)  x >= a  return 1,  x < a return 0
-                col.a = step(distance(i.uv, float2(0.5, 0.5)), _ClipRange);
-
-                if(distance(i.uv, float2(0.5, 0.5)) > _ClipRange)
-                {
-                    discard;
-                }
-
-                //添加Outline
-                if(distance(i.uv, float2(0.5, 0.5)) > _ClipRange - _Outline)
-                {
-                    col.rgb = _OutlineColor.rgb;
-                }
-
                 return col;
             }
             ENDCG
