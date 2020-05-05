@@ -67,7 +67,7 @@ Shader "Vitens/Petrifaction"
 				fixed4 colStatue = tex2D(_StatueTex, i.uv2);
 				float grey = dot(col.rgb, float3(0.299, 0.587, 0.114));
 				col.rgb = lerp(col.rgb, float3(grey, grey, grey), _StatueDegree);
-				col.rgb *= lerp(fixed3(1,1,1), colStatue.rgb, _StatueDegree) * _Brightness;
+				col.rgb *= lerp(fixed3(1,1,1), colStatue.rgb, _StatueDegree) * lerp(1,_Brightness, _StatueDegree);
 
 				return col * _Tint;
 			}
