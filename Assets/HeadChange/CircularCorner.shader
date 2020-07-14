@@ -4,14 +4,16 @@ Shader "Vitens/CircularCorner"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Width("width", range(0, 0.5)) = 0.1
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "Queue"="Transparent" }
         LOD 100
 
         Pass
         {
+            blend SrcAlpha OneMinusSrcAlpha
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -31,6 +33,7 @@ Shader "Vitens/CircularCorner"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            fixed _Width;
 
             v2f vert (appdata v)
             {
@@ -42,7 +45,21 @@ Shader "Vitens/CircularCorner"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                half2 uv = i.uv.xy - half2(0.5h, 0.5h);//将UV中心移动到图片中心
+                half threshold = 0.5h - _Width;//计算出阈值 uv的xy在 +-threshold范围内为显示，剩下四个角需要根据圆来判断
+                
+                //四个角的范围内
+                half l = length(abs(uv) - half2(threshold, threshold));
+                half stepL = step(_Width, l);
+                
+                //除了角的其他部分
+                half stepX = step(threshold, abs(uv.x));
+                half stepY = step(threshold, abs(uv.y));
+                float alpha = 1 - stepX*stepY*stepL;
+
                 fixed4 col = tex2D(_MainTex, i.uv);
+
+                col.a = alpha;
                 return col;
             }
             ENDCG

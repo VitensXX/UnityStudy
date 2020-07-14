@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HeadChange : MonoBehaviour, IPointerClickHandler
+public class HeadChange : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Range(1, 5)]
     public int rotateCount = 3;//旋转圈数
@@ -59,19 +59,21 @@ public class HeadChange : MonoBehaviour, IPointerClickHandler
 
         if (_squareToCircle)
         {
-            _mat.SetFloat("_ClipRange", Mathf.Lerp(SQUARE_CIRCLE_CLIP, CIRCLE_CLIP, _progress));
-            _mat.SetFloat("_Outline", Mathf.Lerp(0, OUTLINE, _progress));
+            //_mat.SetFloat("_ClipRange", Mathf.Lerp(SQUARE_CIRCLE_CLIP, CIRCLE_CLIP, _progress));
+            //_mat.SetFloat("_Outline", Mathf.Lerp(0, OUTLINE, _progress));
+            _mat.SetFloat("_Width", Mathf.Lerp(0, CIRCLE_CLIP, _progress));
             _ts.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, -360 * rotateCount, _progress));
         }
         else if (_circleToSquare)
         {
-            _mat.SetFloat("_ClipRange", Mathf.Lerp(CIRCLE_CLIP, SQUARE_CIRCLE_CLIP, _progress));
-            _mat.SetFloat("_Outline", Mathf.Lerp(OUTLINE, 0, _progress));
+            //_mat.SetFloat("_ClipRange", Mathf.Lerp(CIRCLE_CLIP, SQUARE_CIRCLE_CLIP, _progress));
+            //_mat.SetFloat("_Outline", Mathf.Lerp(OUTLINE, 0, _progress));
+            _mat.SetFloat("_Width", Mathf.Lerp(CIRCLE_CLIP, 0, _progress));
             _ts.localEulerAngles = new Vector3(0, 0, Mathf.Lerp(0, 360 * rotateCount, _progress));
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    void Change()
     {
         //重置结束标志
         _stop = false;
@@ -97,5 +99,15 @@ public class HeadChange : MonoBehaviour, IPointerClickHandler
         //材质球属性还原
         _mat.SetFloat("_ClipRange", 1);
         _mat.SetFloat("_Outline", 0);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Change();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Change();
     }
 }
