@@ -8,6 +8,7 @@ using UnityEngine;
 /// Description : 
 ///     网格调试
 /// </summary>
+[ExecuteInEditMode]
 public class MeshDebug : MonoBehaviour
 {
     Mesh _mesh;
@@ -40,6 +41,7 @@ public class MeshDebug : MonoBehaviour
 
 
             Debug.DrawRay(worldPos, normal, Color.green);
+
         }
     }
 
@@ -50,8 +52,8 @@ public class MeshDebug : MonoBehaviour
         float ry = -Mathf.PI / 180 * rotation.y;
         float rz = -Mathf.PI / 180 * rotation.z;
         //x
-        rotatedPos.y = pos.y * Mathf.Cos(rx) - pos.z * Mathf.Sin(rx);
-        rotatedPos.z = pos.y * Mathf.Sin(rx) + pos.z * Mathf.Cos(rx);
+        rotatedPos.y = pos.y * Mathf.Cos(rx) + pos.z * Mathf.Sin(rx);
+        rotatedPos.z = -pos.y * Mathf.Sin(rx) + pos.z * Mathf.Cos(rx);
         pos = rotatedPos;
         //y
         rotatedPos.x = pos.x * Mathf.Cos(ry) - pos.z * Mathf.Sin(ry);
