@@ -11,6 +11,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class MeshDebug : MonoBehaviour
 {
+    public Transform test;
     Mesh _mesh;
 
     void Start()
@@ -42,7 +43,13 @@ public class MeshDebug : MonoBehaviour
 
             Debug.DrawRay(worldPos, normal, Color.green);
 
+
+            if(i == 0)
+            {
+                test.position = worldPos;
+            }
         }
+
     }
 
     Vector3 Rotate(Vector3 pos, Vector3 rotation)
