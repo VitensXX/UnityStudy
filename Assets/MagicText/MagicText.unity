@@ -163,73 +163,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
-  type: 3
-  animCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  periodicType: 0
-  perTextSpeed: 2
-  frequency: 1
-  atten: 0
-  perTextInterval: 0.05
-  Loop: 1
-  loopInterval: 3
-  isRandomForLoopInterval: 1
-  randomRangeForLoopInterval: 2
-  animFactor: 20
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset: 0
-  posOffset: {x: 0, y: 0}
-  isFadein: 0
-  randomOrder: 0
+  awakeDelay: 0
+  layout: 0
   radius: 0
-  textInterval: 0
-  textIntervalFactor: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  alphaCurve_1:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &86914111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,41 +326,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
-  type: 5
-  animCurve:
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.4956665
-      value: 1.003624
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0014232
-      value: 0.007245546
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  alphaCurve:
+  alphaCurve_1:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -379,24 +365,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  periodicType: 0
-  perTextSpeed: 3
-  frequency: 1
-  atten: 0
-  perTextInterval: 0.1
-  Loop: 0
-  loopInterval: 3
-  isRandomForLoopInterval: 1
-  randomRangeForLoopInterval: 2
-  animFactor: 50
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset: 1
-  posOffset: {x: 200, y: 100}
-  isFadein: 1
-  randomOrder: 0
-  radius: 0
-  textInterval: 0
-  textIntervalFactor: 0
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &97141069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +438,126 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97141066}
   m_CullTransparentMesh: 0
+--- !u!1 &171693333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171693334}
+  - component: {fileID: 171693336}
+  - component: {fileID: 171693335}
+  m_Layer: 5
+  m_Name: Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &171693334
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171693333}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1012077482}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &171693335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171693333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 100
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u662F"
+--- !u!222 &171693336
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171693333}
+  m_CullTransparentMesh: 0
+--- !u!1 &486831757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 486831759}
+  - component: {fileID: 486831758}
+  m_Layer: 0
+  m_Name: 
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &486831758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486831757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085068fb635cab148a4920e648955001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &486831759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486831757}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &490848627
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,41 +609,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
-  type: 2
-  animCurve:
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.4956665
-      value: 1.003624
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0014232
-      value: 0.007245546
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  alphaCurve:
+  alphaCurve_1:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -546,24 +648,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  periodicType: 0
-  perTextSpeed: 3
-  frequency: 1
-  atten: 0
-  perTextInterval: 0.1
-  Loop: 1
-  loopInterval: 3
-  isRandomForLoopInterval: 1
-  randomRangeForLoopInterval: 2
-  animFactor: 50
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset: 0
-  posOffset: {x: 0, y: 0}
-  isFadein: 0
-  randomOrder: 0
-  radius: 0
-  textInterval: 0
-  textIntervalFactor: 0
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &490848630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,41 +772,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
-  type: 7
-  animCurve:
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.4956665
-      value: 1.003624
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0014232
-      value: 0.007245546
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  alphaCurve:
+  alphaCurve_1:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -713,24 +811,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  periodicType: 0
-  perTextSpeed: 3
-  frequency: 1
-  atten: 0
-  perTextInterval: 0.1
-  Loop: 1
-  loopInterval: 3
-  isRandomForLoopInterval: 1
-  randomRangeForLoopInterval: 2
-  animFactor: 50
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset: 0
-  posOffset: {x: 0, y: 0}
-  isFadein: 0
-  randomOrder: 0
-  radius: 0
-  textInterval: 0
-  textIntervalFactor: 0
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &791074841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,11 +931,82 @@ MonoBehaviour:
   m_GameObject: {fileID: 879491752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
+  playOnAwake: 1
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  alphaCurve_1:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &879491755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,6 +1047,131 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879491752}
   m_CullTransparentMesh: 0
+--- !u!1 &905424106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 905424107}
+  - component: {fileID: 905424110}
+  - component: {fileID: 905424109}
+  - component: {fileID: 905424111}
+  - component: {fileID: 905424108}
+  - component: {fileID: 905424112}
+  m_Layer: 5
+  m_Name: outline (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &905424107
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905424106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1245443864}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &905424108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905424106}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &905424109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905424106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\u5927"
+--- !u!222 &905424110
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905424106}
+  m_CullTransparentMesh: 0
+--- !u!114 &905424111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905424106}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece26595a67eb634fa766ce4675577b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.9433962, g: 0.084549636, b: 0.084549636, a: 0.5019608}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &905424112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905424106}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &921525006
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +1236,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1012077478
 GameObject:
@@ -1021,8 +1330,11 @@ RectTransform:
   m_Children:
   - {fileID: 1225953671}
   - {fileID: 1245443864}
+  - {fileID: 2019205587}
+  - {fileID: 171693334}
+  - {fileID: 1954810826}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1080,73 +1392,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
-  type: 3
-  animCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  alphaCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  periodicType: 0
-  perTextSpeed: 2
-  frequency: 1
-  atten: 0
-  perTextInterval: 0.05
-  Loop: 0
-  loopInterval: 3
-  isRandomForLoopInterval: 1
-  randomRangeForLoopInterval: 2
-  animFactor: 100
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset: 1
-  posOffset: {x: 200, y: 0}
-  isFadein: 1
-  randomOrder: 0
+  awakeDelay: 0
+  layout: 0
   radius: 0
-  textInterval: 0
-  textIntervalFactor: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  alphaCurve_1:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &1080551813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1187,6 +1504,441 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080551810}
   m_CullTransparentMesh: 0
+--- !u!1 &1089312650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1089312651}
+  - component: {fileID: 1089312655}
+  - component: {fileID: 1089312654}
+  - component: {fileID: 1089312653}
+  - component: {fileID: 1089312652}
+  m_Layer: 5
+  m_Name: outline (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1089312651
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089312650}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1245443864}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -670.43, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1089312652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089312650}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &1089312653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089312650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece26595a67eb634fa766ce4675577b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.9433962, g: 0.084549636, b: 0.084549636, a: 0.5019608}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &1089312654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089312650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 300
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\u6D4B\u8BD5"
+--- !u!222 &1089312655
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089312650}
+  m_CullTransparentMesh: 0
+--- !u!1 &1172129906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1172129907}
+  - component: {fileID: 1172129910}
+  - component: {fileID: 1172129909}
+  - component: {fileID: 1172129908}
+  m_Layer: 5
+  m_Name: Rainbow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1172129907
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172129906}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1225953671}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 48.5, y: -14.1}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1172129908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172129906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 1
+  awakeDelay: 2
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  alphaCurve_1:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
+--- !u!114 &1172129909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172129906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 100
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\u626B\u5149\u6548\u679C\u6D4B\u8BD5\u770B\u770B\u6548\u679C"
+--- !u!222 &1172129910
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172129906}
+  m_CullTransparentMesh: 0
+--- !u!1 &1186559895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1186559896}
+  - component: {fileID: 1186559899}
+  - component: {fileID: 1186559898}
+  - component: {fileID: 1186559897}
+  m_Layer: 5
+  m_Name: Italic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1186559896
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186559895}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1245443864}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1186559897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186559895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 1
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  alphaCurve_1:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
+--- !u!114 &1186559898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186559895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 100
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\u6587\u5B57\u6D4B\u8BD5"
+--- !u!222 &1186559899
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186559895}
+  m_CullTransparentMesh: 0
 --- !u!1 &1225953670
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,6 +1970,8 @@ RectTransform:
   - {fileID: 879491753}
   - {fileID: 86914109}
   - {fileID: 791074839}
+  - {fileID: 1691705312}
+  - {fileID: 1172129907}
   m_Father: {fileID: 1012077482}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1261,6 +2015,10 @@ RectTransform:
   - {fileID: 1436382860}
   - {fileID: 97141067}
   - {fileID: 1556823286}
+  - {fileID: 1186559896}
+  - {fileID: 1688826527}
+  - {fileID: 905424107}
+  - {fileID: 1089312651}
   m_Father: {fileID: 1012077482}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1320,41 +2078,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
-  type: 7
-  animCurve:
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.4956665
-      value: 1.003624
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0014232
-      value: 0.007245546
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  alphaCurve:
+  alphaCurve_1:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -1378,24 +2117,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  periodicType: 0
-  perTextSpeed: 3
-  frequency: 1
-  atten: 0
-  perTextInterval: 0.1
-  Loop: 0
-  loopInterval: 3
-  isRandomForLoopInterval: 1
-  randomRangeForLoopInterval: 2
-  animFactor: 30
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset: 0
-  posOffset: {x: 50, y: 0}
-  isFadein: 1
-  randomOrder: 0
-  radius: 0
-  textInterval: 0
-  textIntervalFactor: 0
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &1436382862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1454,7 +2208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1556823286
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1462,17 +2216,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556823285}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.009162936, w: 0.99995804}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1245443864}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.05}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 48.5, y: -14.1}
-  m_SizeDelta: {x: 874.63, y: 30}
+  m_SizeDelta: {x: 874.63, y: 134.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556823287
 MonoBehaviour:
@@ -1487,8 +2241,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
-  type: 8
-  animCurve:
+  awakeDelay: 0
+  layout: 1
+  radius: 298.5
+  angle: 19.04
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.48886704
+      value: 1.0003284
+      inSlope: 0.9927249
+      outSlope: 0.9927249
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.98687744
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  alphaCurve_1:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -1512,48 +2307,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  alphaCurve:
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  periodicType: 0
-  perTextSpeed: 2
-  frequency: 1
-  atten: 0
-  perTextInterval: 0.05
-  Loop: 0
-  loopInterval: 3
-  isRandomForLoopInterval: 1
-  randomRangeForLoopInterval: 2
-  animFactor: 100
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset: 0
-  posOffset: {x: 200, y: 0}
-  isFadein: 0
-  randomOrder: 0
-  radius: 670.3
-  textInterval: 8.8
-  textIntervalFactor: -5.1
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &1556823288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1645,41 +2431,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
-  type: 2
-  animCurve:
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.4956665
-      value: 1.003624
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0014232
-      value: 0.007245546
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  alphaCurve:
+  alphaCurve_1:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -1703,24 +2470,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  periodicType: 0
-  perTextSpeed: 3
-  frequency: 1
-  atten: 0
-  perTextInterval: 0.1
-  Loop: 0
-  loopInterval: 3
-  isRandomForLoopInterval: 1
-  randomRangeForLoopInterval: 2
-  animFactor: 50
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset: 1
-  posOffset: {x: 200, y: 100}
-  isFadein: 1
-  randomOrder: 0
-  radius: 0
-  textInterval: 0
-  textIntervalFactor: 0
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &1625211290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1760,6 +2542,364 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625211287}
+  m_CullTransparentMesh: 0
+--- !u!1 &1688826526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1688826527}
+  - component: {fileID: 1688826531}
+  - component: {fileID: 1688826530}
+  - component: {fileID: 1688826529}
+  - component: {fileID: 1688826528}
+  - component: {fileID: 1688826532}
+  m_Layer: 5
+  m_Name: outline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1688826527
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688826526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1245443864}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1688826528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688826526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
+--- !u!114 &1688826529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688826526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 1
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  alphaCurve_1:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
+--- !u!114 &1688826530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688826526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 100
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\u6587\u5B57\u6D4B\u8BD5"
+--- !u!222 &1688826531
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688826526}
+  m_CullTransparentMesh: 0
+--- !u!114 &1688826532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688826526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.24875402, g: 0.8113208, b: 0.31688458, a: 0.5}
+  m_EffectDistance: {x: 11.7, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!1 &1691705311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1691705312}
+  - component: {fileID: 1691705315}
+  - component: {fileID: 1691705314}
+  - component: {fileID: 1691705313}
+  m_Layer: 5
+  m_Name: color
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1691705312
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691705311}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1225953671}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 48.5, y: -14.1}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1691705313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691705311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 1
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  alphaCurve_1:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
+--- !u!114 &1691705314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691705311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 100
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\u626B\u5149\u6548\u679C\u6D4B\u8BD5\u770B\u770B\u6548\u679C"
+--- !u!222 &1691705315
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691705311}
   m_CullTransparentMesh: 0
 --- !u!1 &1715281070
 GameObject:
@@ -1812,41 +2952,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
-  type: 4
-  animCurve:
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.0022125244
-      value: -0.92085266
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5029907
-      value: 0.31110382
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1.0014232
-      value: 0.007245546
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  alphaCurve:
+  alphaCurve_1:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -1870,24 +2991,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  periodicType: 0
-  perTextSpeed: 3
-  frequency: 1
-  atten: 0
-  perTextInterval: 0.1
-  Loop: 0
-  loopInterval: 3
-  isRandomForLoopInterval: 1
-  randomRangeForLoopInterval: 2
-  animFactor: 50
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset: 1
-  posOffset: {x: 100, y: 0}
-  isFadein: 1
-  randomOrder: 0
-  radius: 0
-  textInterval: 0
-  textIntervalFactor: 0
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &1715281073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1995,7 +3131,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1840414036
 GameObject:
@@ -2048,32 +3184,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
-  type: 4
-  animCurve:
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.004422821
-      value: 1.9969522
-      inSlope: -3.1550276
-      outSlope: -3.1550276
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.04450264
-    - serializedVersion: 3
-      time: 1.0009658
-      value: -0.0005480408
-      inSlope: -2.9591951
-      outSlope: -2.9591951
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.045811534
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  alphaCurve:
+  alphaCurve_1:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -2097,24 +3223,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  periodicType: 0
-  perTextSpeed: 3
-  frequency: 1
-  atten: 0
-  perTextInterval: 0.3
-  Loop: 0
-  loopInterval: 3
-  isRandomForLoopInterval: 1
-  randomRangeForLoopInterval: 2
-  animFactor: 100
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset: 0
-  posOffset: {x: 200, y: 100}
-  isFadein: 1
-  randomOrder: 0
-  radius: 0
-  textInterval: 0
-  textIntervalFactor: 0
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &1840414039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2154,6 +3295,223 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840414036}
+  m_CullTransparentMesh: 0
+--- !u!1 &1954810825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1954810826}
+  - component: {fileID: 1954810829}
+  - component: {fileID: 1954810828}
+  - component: {fileID: 1954810827}
+  m_Layer: 5
+  m_Name: test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1954810826
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954810825}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1012077482}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -54.84}
+  m_SizeDelta: {x: 160, y: 139.68}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1954810827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954810825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playOnAwake: 1
+  awakeDelay: 0
+  layout: 1
+  radius: 200
+  angle: 18.37
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 1
+  unscaledTime: 0
+  fadein_1: 1
+  type_1: 2
+  animCurve_1:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.49929634
+      value: 0.9925903
+      inSlope: 1.014711
+      outSlope: 1.014711
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9911194
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  alphaCurve_1:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_1: 3
+  perTextInterval_1: 0.1
+  loop_1: 0
+  loopInterval_1: 1
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 1
+  posOffset_1: {x: 100, y: 0}
+  randomOrder_1: 0
+  stage_2: 1
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.49369615
+      value: 0.9915047
+      inSlope: 1.0214766
+      outSlope: 1.0214766
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9822693
+      value: 0.002357483
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 1
+  perTextInterval_2: 1
+  loop_2: 1
+  loopInterval_2: 1
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
+--- !u!114 &1954810828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954810825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 100
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\u6587\u5B57\u6D4B\u8BD5"
+--- !u!222 &1954810829
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954810825}
   m_CullTransparentMesh: 0
 --- !u!1 &1968669699
 GameObject:
@@ -2206,32 +3564,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playOnAwake: 1
-  type: 1
-  animCurve:
+  awakeDelay: 0
+  layout: 0
+  radius: 0
+  angle: 0
+  italicFactor: {x: 0, y: 0}
+  enableAnim: 0
+  unscaledTime: 0
+  fadein_1: 0
+  type_1: 1
+  animCurve_1:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.004422821
-      value: 1.9969522
-      inSlope: -3.1550276
-      outSlope: -3.1550276
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.04450264
-    - serializedVersion: 3
-      time: 1.0009658
-      value: -0.0005480408
-      inSlope: -2.9591951
-      outSlope: -2.9591951
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.045811534
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  alphaCurve:
+  alphaCurve_1:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -2255,24 +3603,39 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  periodicType: 0
-  perTextSpeed: 3
-  frequency: 1
-  atten: 0
-  perTextInterval: 0.02
-  Loop: 0
-  loopInterval: 3
-  isRandomForLoopInterval: 1
-  randomRangeForLoopInterval: 2
-  animFactor: 100
-  textColor: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset: 1
-  posOffset: {x: 200, y: 0}
-  isFadein: 1
-  randomOrder: 0
-  radius: 0
-  textInterval: 0
-  textIntervalFactor: 0
+  perTextSpeed_1: 2
+  perTextInterval_1: 0.3
+  loop_1: 0
+  loopInterval_1: 5
+  isRandomForLoopInterval_1: 0
+  randomRangeForLoopInterval_1: 0
+  animFactor_1: 30
+  textColor_1: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_1: 0
+  posOffset_1: {x: 0, y: 0}
+  randomOrder_1: 0
+  stage_2: 0
+  type_2: 1
+  animCurve_2:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_2: 2
+  perTextInterval_2: 0.3
+  loop_2: 0
+  loopInterval_2: 5
+  isRandomForLoopInterval_2: 0
+  randomRangeForLoopInterval_2: 0
+  animFactor_2: 30
+  textColor_2: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_2: 0
+  posOffset_2: {x: 0, y: 0}
+  randomOrder_2: 0
+  stage_3: 0
+  autoDisappear: 0
+  duration: 0
 --- !u!114 &1968669702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2393,5 +3756,82 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2019205586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2019205587}
+  - component: {fileID: 2019205589}
+  - component: {fileID: 2019205588}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2019205587
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019205586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1012077482}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2019205588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019205586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 100
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 100
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: "\u662F"
+--- !u!222 &2019205589
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019205586}
+  m_CullTransparentMesh: 0

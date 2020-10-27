@@ -26,73 +26,223 @@ public class MagicText : BaseMeshEffect
     const float INVALID = int.MaxValue - 10;//无效值
     const float CURVE_MAX_TIME = 1;//曲线横坐标右边界
     const float CURVE_MIN_TIME = 0;//曲线横坐标左边界
+
+    public enum Layout
+    {
+        Normal, //原始的
+        Circle, //圆形
+        Italic, //斜体
+    }
+
     public enum Type
     {
-        None,       //无
         Normal,     //普通，fadein/out 和 posOffset
         Jump,       //跳跃
         Rotate,     //旋转
         Scale,      //缩放
         Color,      //扫光
-        Rainbow,    //彩虹
+        //Rainbow,    //彩虹
         Stretch,    //拉伸
-        CircleLayout,//布局 圆
+        //CircleLayout,//布局 圆
+        //Italic,     //斜体
     }
+
+    public enum Stage
+    {
+        Layout = 0,     //布局
+        Fadein = 1,     //淡入
+        Display = 2,    //展示
+        Fadeout = 3     //淡出
+    }
+
+    //消失类型
+    public enum FadeoutType
+    {
+        Back,        //fadein的反向播放
+        Immediately, //立即
+        Other,       //其他
+    }
+
     public bool playOnAwake = true;
-    public Type type = Type.Jump;
-    
+
+    [Tooltip("Awake的延迟时间")]
+    public float awakeDelay;
+
+
+    #region 布局设置
+    public Layout layout = Layout.Normal;
+    public float radius = 200;
+    public float angle = 10;
+    public Vector2 italicFactor;
+
+    Layout _lastLayout;
+    //bool _layoutFinished = false;
+    float _radius;
+    float _angle;
+
+    Vector3 _circleCenter;
+    Vector3 _textCenter;
+    List<Vector3> _verticleYDir;//顶点的Y坐标方向
+    #endregion 
+
+    public bool enableAnim;
+    public bool unscaledTime;
+
+    #region 第一阶段属性 淡入
+    [Tooltip("是否需要淡入效果")]
+    public bool fadein_1 = false;
+
+    public Type type_1 = Type.Normal;
+
     [Tooltip("动画曲线,控制每个字的动画节奏")]
-    public AnimationCurve animCurve;
+    public AnimationCurve animCurve_1;
     [Tooltip("透明度变化曲线")]
-    public AnimationCurve alphaCurve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
-    public PeriodicFunction.Type periodicType = PeriodicFunction.Type.Sawtooth;
+    public AnimationCurve alphaCurve_1 = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
 
     [Tooltip("每个字动画的快慢")]
-    public float perTextSpeed = 5;
-
-    [Tooltip("动画频率")]
-    public int frequency = 1;
-
-    [Tooltip("衰减参数")]
-    public float atten = 0;
-
+    public float perTextSpeed_1 = 2;
     [Tooltip("每个字的动画间隔时间")]
-    public float perTextInterval = 0.3f;
+    public float perTextInterval_1 = 0.3f;
 
     [Tooltip("是否循环")]
-    public bool Loop = false;
-
+    public bool loop_1 = false;
     [Tooltip("Loop的间隔时间")]
-    public float loopInterval = 5f;
-
+    public float loopInterval_1 = 5f;
     [Tooltip("Loop间隔时间加随机值")]
-    public bool isRandomForLoopInterval = false;
-
+    public bool isRandomForLoopInterval_1 = false;
     [Tooltip("Loop间隔时间随机因子范围")]
-    public float randomRangeForLoopInterval = 0;
+    public float randomRangeForLoopInterval_1 = 0;
 
     [Tooltip("动画程度因子")]
-    public float animFactor = 30;
-
+    public float animFactor_1 = 30;
     [Tooltip("文字颜色(类似于扫光颜色)")]
-    public Color textColor = Color.red;
+    public Color textColor_1 = Color.red;
 
     [Tooltip("是否开启坐标位子偏移")]
-    public bool openPosOffset = false;
+    public bool openPosOffset_1 = false;
     [Tooltip("坐标位置偏移")]
-    public Vector2 posOffset;
-
-    [Tooltip("是否需要淡入效果")]
-    public bool isFadein = false;
+    public Vector2 posOffset_1;
 
     [Tooltip("顺序随机化")]
-    public bool randomOrder = false;
+    public bool randomOrder_1 = false;
+    #endregion
 
-    [Tooltip("圆心布局半径")]
-    public float radius;
+    #region 第二阶段属性 持续显示阶段
+    public bool stage_2;
 
-    public float textInterval;
-    public float textIntervalFactor;
+    public Type type_2 = Type.Normal;
+
+    [Tooltip("动画曲线,控制每个字的动画节奏")]
+    public AnimationCurve animCurve_2;
+
+    [Tooltip("每个字动画的快慢")]
+    public float perTextSpeed_2 = 2;
+    [Tooltip("每个字的动画间隔时间")]
+    public float perTextInterval_2 = 0.3f;
+
+    [Tooltip("是否循环")]
+    public bool loop_2 = false;
+    [Tooltip("Loop的间隔时间")]
+    public float loopInterval_2 = 5f;
+    [Tooltip("Loop间隔时间加随机值")]
+    public bool isRandomForLoopInterval_2 = false;
+    [Tooltip("Loop间隔时间随机因子范围")]
+    public float randomRangeForLoopInterval_2 = 0;
+
+    [Tooltip("动画程度因子")]
+    public float animFactor_2 = 30;
+    [Tooltip("文字颜色(类似于扫光颜色)")]
+    public Color textColor_2 = Color.red;
+
+    [Tooltip("是否开启坐标位子偏移")]
+    public bool openPosOffset_2 = false;
+    [Tooltip("坐标位置偏移")]
+    public Vector2 posOffset_2;
+
+    [Tooltip("顺序随机化")]
+    public bool randomOrder_2 = false;
+
+    #endregion
+
+    #region 第三阶段属性 淡出
+    public bool stage_3;
+
+    #endregion
+
+    #region 阶段切换需要修改的参数
+    Type _curType;
+    AnimationCurve _animCurve;
+    float _perTextSpeed;
+    float _perTextInterval;
+    bool _loop;
+    float _loopInterval;
+    bool _isRandomForLoopInterval;
+    float _randomRangeForLoopInterval;
+    float _animFactor;
+    Color _textColor;
+    bool _openPosOffset;
+    Vector2 _posOffset;
+    bool _randomOrder;
+    #endregion
+
+
+    //阶段切换 参数重新赋值
+    void SetParamsOnStageChanged()
+    {
+        Debug.LogError("SetParamsOnStageChanged " + _stage);
+        _x = 0;
+        if(_stage == Stage.Fadein)
+        {
+            _curType = type_1;
+            _animCurve = animCurve_1;
+            _perTextSpeed = perTextSpeed_1;
+            _perTextInterval = perTextInterval_1;
+            _loop = loop_1;
+            _loopInterval = loopInterval_1;
+            _isRandomForLoopInterval = isRandomForLoopInterval_1;
+            _randomRangeForLoopInterval = randomRangeForLoopInterval_1;
+            _animFactor = animFactor_1;
+            _textColor = textColor_1;
+            _openPosOffset = openPosOffset_1;
+            _posOffset = posOffset_1;
+            _randomOrder = randomOrder_1;
+        }
+        else if (_stage == Stage.Display)
+        {
+            _isFadeIn = false;//fadein只在Fadein阶段有用
+
+            _curType = type_2;
+            _animCurve = animCurve_2;
+            _perTextSpeed = perTextSpeed_2;
+            _perTextInterval = perTextInterval_2;
+            _loop = loop_2;
+            _loopInterval = loopInterval_2;
+            _isRandomForLoopInterval = isRandomForLoopInterval_2;
+            _randomRangeForLoopInterval = randomRangeForLoopInterval_2;
+            _animFactor = animFactor_2;
+            _textColor = textColor_2;
+            _openPosOffset = openPosOffset_2;
+            _posOffset = posOffset_2;
+            _randomOrder = randomOrder_2;
+        }
+    }
+
+
+    Stage _stage = Stage.Layout;
+
+   
+
+   
+
+
+    
+
+    [Tooltip("自动消失")]
+    public bool autoDisappear;
+
+    [Tooltip("显示时长(从AwakeDelay过后就开始计时)")]
+    public float duration;
+
 
     public bool IsStart { get; private set; } = false;
 
@@ -100,35 +250,46 @@ public class MagicText : BaseMeshEffect
     float _randomForLoopInterval = 0;
     bool _isFadeIn;
     bool _isFadeout;
-    bool _openPosOffset;
-    Vector2 _posOffset;
-    Vector3 _circleCenter;
-    Vector3 _textCenter;
+    //bool _openPosOffset;
+    //Vector2 _posOffset;
+
+   
     
     public void Play()
     {
-        if (type == Type.Rainbow)
-        {
-            frequency = 8;
-            periodicType = PeriodicFunction.Type.Linear01;
-        }
-        _lastType = type;
+        //if (type == Type.Rainbow)
+        //{
+        //    frequency = 8;
+        //    periodicType = PeriodicFunction.Type.Linear01;
+        //}
+        _lastType = _curType;
 
-        _openPosOffset = openPosOffset;
-        _posOffset = posOffset;
-        _isFadeIn = isFadein;
+        //_openPosOffset = openPosOffset_1;
+        //_posOffset = posOffset_1;
+        _isFadeIn = fadein_1;
         _isFadeout = false;
         IsStart = true;
         _onceEnd = false;
         _originColor = _text.color;
         _isFirst = true;
+
+        SetParam();
+        //_layoutFinished = false;
+    }
+
+    //从inspector面板获取参数并设置
+    void SetParam()
+    {
+        _lastLayout = layout;
+        _angle = angle;
+        _radius = radius;
     }
 
     //淡出 和淡入反着来
     public void Fadeout()
     {
         //loop模式不支持淡出操作
-        if (Loop)
+        if (loop_1)
         {
             Debug.LogError("loop模式不支持淡出操作");
             return;
@@ -138,10 +299,10 @@ public class MagicText : BaseMeshEffect
         _isFadeout = true;
         _onceEnd = false;
 
-        _openPosOffset = openPosOffset;
-        _posOffset = posOffset;
-        _isFadeIn = isFadein;
-        _posOffset = posOffset * new Vector2(-1, 1);
+        //_openPosOffset = openPosOffset_1;
+        //_posOffset = posOffset_1;
+        _isFadeIn = fadein_1;
+        //_posOffset = posOffset_1 * new Vector2(-1, 1);
         _x = 1;
     }
 
@@ -160,12 +321,14 @@ public class MagicText : BaseMeshEffect
     //停止动画
     public void Stop()
     {
+        _stage = 0;
         _isFadeIn = false;
         IsStart = false;
         _openPosOffset = false;
         _x = 0;
-
+        //_layoutFinished = false;
         ClearPosRecord();
+
         graphic.SetVerticesDirty();
     }
 
@@ -182,8 +345,10 @@ public class MagicText : BaseMeshEffect
     
     bool _onceEnd;//所有文字完成一轮动画
     float _tickForWait = 0;//等待计时器
+    float _tickForShowTime = 0;//显示时间计时(从AwakeDelay过后就开始计时)
     private void Update()
     {
+       
 #if UNITY_EDITOR
         //参数合法性检测
         if (!Application.isPlaying)
@@ -191,23 +356,36 @@ public class MagicText : BaseMeshEffect
             CheckCurve();
             CheckLoop();
         }
+
+        //Relayout校验
+        if (_angle != angle || _radius != radius || _lastLayout != layout)
+        {
+            SetParam();
+            Relayout();
+        }
 #endif
+
+        //未开启动画 后面的一切操作都不将执行
+        if (!enableAnim)
+        {
+            return;
+        }
 
         if (!IsStart)
             return;
 
-        if (_lastType != type)
-        {
-            Stop();
-            return;
-        }
-
-        if (Loop)
+        //if (_lastType != _curType)
+        //{
+        //    Debug.LogError("!!!!!!!!");
+        //    Stop();
+        //    return;
+        //}
+        if (_loop)
         {
             if (_onceEnd)
             {
-                _tickForWait += Time.deltaTime;
-                if(_tickForWait >= loopInterval + _randomForLoopInterval)
+                _tickForWait += unscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
+                if(_tickForWait >= loopInterval_1 + _randomForLoopInterval)
                 {
                     _onceEnd = false;
                     _x = 0;
@@ -227,11 +405,11 @@ public class MagicText : BaseMeshEffect
 
         if (_isFadeout)
         {
-            _x -= Time.deltaTime * perTextSpeed;
+            _x -= unscaledTime ? Time.unscaledDeltaTime * _perTextSpeed : Time.deltaTime * _perTextSpeed;
         }
         else
         {
-            _x += Time.deltaTime * perTextSpeed;
+            _x += unscaledTime ? Time.unscaledDeltaTime * _perTextSpeed : Time.deltaTime * _perTextSpeed;
         }
         graphic.SetVerticesDirty();
     }
@@ -241,12 +419,18 @@ public class MagicText : BaseMeshEffect
     {
         base.OnEnable();
         _text = GetComponent<Text>();
-        _lastType = type;
+        _lastType = type_1;
 
+        _x = -awakeDelay * _perTextSpeed;
         if (playOnAwake && Application.isPlaying)
         {
             Play();
         }
+    }
+
+    protected override void OnDisable()
+    {
+        Stop();
     }
 
     bool _isFirst = true;
@@ -261,6 +445,12 @@ public class MagicText : BaseMeshEffect
             return;
         _verticesCount = helper.currentVertCount;
 
+        //如果顶点数有变化,说明文本内容有修改,需要清除记录
+        if (_verticesOriPos != null && _verticesOriPos.Count != helper.currentVertCount)
+        {
+            ClearPosRecord();
+        }
+
         List<UIVertex> vertices = new List<UIVertex>();
         helper.GetUIVertexStream(vertices);
 
@@ -270,39 +460,11 @@ public class MagicText : BaseMeshEffect
         if (_verticesOriPos == null)
         {
             _verticesOriPos = new List<Vector3>();
-
-
-            bool even = _verticesCount / 4 % 2 == 0;
-
             for (int i = 0; i < _verticesCount; i++)
             {
+                //Debug.LogError(v.position);
                 helper.PopulateUIVertex(ref v, i);
                 _verticesOriPos.Add(v.position);
-                //Debug.LogError("!!!!!! "+ textInterval);
-                //if (textInterval == 0)
-                //{
-                //    continue;
-                //}
-
-                //    float tempInterval = textInterval * Mathf.Abs(_verticesCount / 8 - i / 4) * textIntervalFactor;
-                //if (even)
-                //{
-                //    Debug.LogError("even");
-                //    if(i/4 < _verticesCount / 8)
-                //    {
-                //        _verticesOriPos[i] -= new Vector3((_verticesCount / 8 - i / 4 - 1) * tempInterval + tempInterval / 2, 0, 0);
-                //    }
-                //    else
-                //    {
-                //        _verticesOriPos[i] += new Vector3((i / 4 - _verticesCount / 8) * tempInterval + tempInterval / 2, 0, 0);
-                //    }
-                //}
-                //else
-                //{
-                //    Debug.LogError("!even");
-                //    _verticesOriPos[i] -= new Vector3((_verticesCount / 8 - i / 4) * tempInterval, 0, 0);
-                //}
-                
             }
         }
 
@@ -316,24 +478,62 @@ public class MagicText : BaseMeshEffect
             }
         }
 
-        //如果定点数有变化,说明文本内容有修改,需要清除记录
-        if (_verticesOriPos.Count != helper.currentVertCount)
-        {
-            ClearPosRecord();
-            return;
-        }
-
         //随机位子淡入
-        if (randomOrder && _randomOrderList == null)
+        if (_randomOrder && _randomOrderList == null)
         {
-            //_randomOrderList = new List<int>();
-            _randomOrderList =  GetRandomOrder();
+            _randomOrderList = MagicTextUtils.GetRandomOrder(_verticesCount);
         }
 
-        //圆心布局 TODO 优化计算
-        if(_lastType == Type.CircleLayout)
+        //处理布局阶段
+        if(_stage == Stage.Layout)
         {
-            //_circleCenter = 
+            RefreshLayout(helper, ref v);
+            //进入下一阶段
+            _stage = Stage.Fadein;
+            SetParamsOnStageChanged();
+        }
+        
+        //尝试处理淡入阶段
+        if(_stage == Stage.Fadein && fadein_1)
+        {
+            //对每个顶点做相应的处理
+            ProcessAnim(helper, ref v);
+        }
+        //尝试处理展示阶段
+        else if(_stage == Stage.Display && stage_2)
+        {
+            //对每个顶点做相应的处理
+            ProcessAnim(helper, ref v);
+        }
+        //尝试处理淡入阶段
+        else if (_stage == Stage.Fadeout && stage_3)
+        {
+
+        }
+        //
+        else
+        {
+            LayoutDefault(helper, ref v);
+        }
+        
+
+        //if (_isFadeIn)
+        //{
+        //    //对每个顶点做相应的处理
+        //    ProcessAnim(helper, ref v);
+        //}
+        //else
+        //{
+        //    LayoutDefault(helper, ref v);
+        //}
+    }
+
+    //刷新布局
+    void RefreshLayout(VertexHelper helper, ref UIVertex v)
+    {
+        //圆形布局,重新计算顶点位置信息
+        if (layout == Layout.Circle)
+        {
             Vector3 tempCenter = new Vector3();
             for (int i = 0; i < _centerPos.Count; i++)
             {
@@ -341,11 +541,26 @@ public class MagicText : BaseMeshEffect
             }
 
             tempCenter /= _centerPos.Count;
-
-            _circleCenter = new Vector3(tempCenter.x, tempCenter.y - radius);
+            _circleCenter = new Vector3(tempCenter.x, tempCenter.y - _radius);
             _textCenter = new Vector3(tempCenter.x, tempCenter.y);
+
+            //重新计算每个顶点的布局
+            for (int i = 0; i < helper.currentVertCount; i++)
+            {
+                helper.PopulateUIVertex(ref v, i);
+                CircleLayout(helper, ref v, i);
+                helper.SetUIVertex(v, i);
+            }
+            RecordAfterLayout(helper, ref v);
         }
 
+        //_layoutFinished = true;
+        
+    }
+
+    //处理动画
+    void ProcessAnim(VertexHelper helper, ref UIVertex v)
+    {
         //对每个定点做相应的处理
         for (int i = 0; i < helper.currentVertCount; i++)
         {
@@ -363,43 +578,96 @@ public class MagicText : BaseMeshEffect
                     v.color.a = 0;
                 }
             }
-            if (type == Type.Normal)
+            if (_curType == Type.Normal)
             {
                 Normal(helper, ref v, i);
             }
-            else if (type == Type.Jump)
+            else if (_curType == Type.Jump)
             {
                 Jump(helper, ref v, i);
             }
-            else if (type == Type.Scale)
+            else if (_curType == Type.Scale)
             {
                 Scale(helper, ref v, i);
             }
-            else if (type == Type.Stretch)
+            else if (_curType == Type.Stretch)
             {
                 Stretch(helper, ref v, i);
             }
-            else if (type == Type.Rotate)
+            else if (_curType == Type.Rotate)
             {
                 Rotate(helper, ref v, i);
             }
-            else if (type == Type.CircleLayout)
-            {
-                CircleLayout(helper, ref v, i);
-            }
-            else if (type == Type.Color)
+            //else if (type_1 == Type.CircleLayout)
+            //{
+            //    CircleLayout(helper, ref v, i);
+            //}
+            //else if (type_1 == Type.Italic)
+            //{
+            //    Italic(helper, ref v, i);
+            //}
+            else if (_curType == Type.Color)
             {
                 ChangeColor(helper, ref v, i);
             }
-            else if (type == Type.Rainbow)
-            {
-                Rainbow(helper, ref v, i);
-            }
+            //else if (type_1 == Type.Rainbow)
+            //{
+            //    //Rainbow(helper, ref v, i);
+            //}
+            //else if (type == Type.Test)
+            //{
+            //    Test(helper, ref v, i);
+            //}
 
             helper.SetUIVertex(v, i);
         }
     }
 
+    //在布局后重新记录顶点信息
+    void RecordAfterLayout(VertexHelper helper, ref UIVertex v)
+    {
+        _verticesOriPos.Clear();
+        for (int i = 0; i < _verticesCount; i++)
+        {
+            helper.PopulateUIVertex(ref v, i);
+            _verticesOriPos.Add(v.position);
+        }
+
+        _centerPos.Clear();
+        for (int i = 0; i < _verticesCount; i += 4)
+        {
+            _centerPos.Add(_verticesOriPos[i] / 2 + _verticesOriPos[i + 2] / 2);
+        }
+
+        if(_verticleYDir == null)
+        {
+            _verticleYDir = new List<Vector3>();
+        }
+        _verticleYDir.Clear();
+        // 0  1
+        // 3  2
+        for (int i = 0; i < _verticesCount; i++)
+        {
+            if (i % 4 == 0)
+            {
+                _verticleYDir.Add((_verticesOriPos[i] - _verticesOriPos[i + 3]).normalized);
+            }
+            else if (i % 4 == 1)
+            {
+                _verticleYDir.Add((_verticesOriPos[i] - _verticesOriPos[i + 1]).normalized);
+            }
+            else if (i % 4 == 2)
+            {
+                _verticleYDir.Add((_verticesOriPos[i - 1] - _verticesOriPos[i]).normalized);
+            }
+            else if (i % 4 == 3)
+            {
+                _verticleYDir.Add((_verticesOriPos[i - 3] - _verticesOriPos[i]).normalized);
+            }
+        }
+    }
+
+    //位置记录的清除操作
     void ClearPosRecord()
     {
         if (_verticesOriPos != null)
@@ -419,34 +687,47 @@ public class MagicText : BaseMeshEffect
             _randomOrderList.Clear();
             _randomOrderList = null;
         }
+        //_layoutFinished = false;
+
+        //回到布局阶段
+        _stage = Stage.Layout;
     }
+
+    //重新布局
+    public void Relayout()
+    {
+        ClearPosRecord();
+    }
+
     #region 采样函数
 
     float SampleAlpha(int index)
     {
-        if (randomOrder)
+        if (_randomOrder)
         {
             index = _randomOrderList[index];
         }
-        float timeOff = (index / 4) * perTextInterval * perTextSpeed;
+
+        float timeOff = (index / 4) * _perTextInterval * _perTextSpeed;
         float curveX = _x - (_isFadeout ? -timeOff : timeOff);
         //未循环 且初始不可见
-        if (!Loop && curveX < 0 && _isFadeIn)
+        if (!_loop && curveX < 0 && _isFadeIn)
         {
             return INVALID;
         }
-        return alphaCurve.Evaluate(curveX);
+        return alphaCurve_1.Evaluate(curveX);
     }
 
     //坐标位子偏移采样
     Vector2 SampleOffset(int index)
     {
-        if (randomOrder)
+        if (_randomOrder)
         {
             index = _randomOrderList[index];
         }
+
         //一个字体网格四个顶点
-        float timeOff = (index / 4) * perTextInterval * perTextSpeed;
+        float timeOff = (index / 4) * _perTextInterval * _perTextSpeed;
         //float tempX = _x - (index / 4) * perTextInterval * perTextSpeed;
         float curveX = _x - (_isFadeout ? -timeOff : timeOff);
         if (curveX < 0 || curveX > 1)
@@ -455,17 +736,7 @@ public class MagicText : BaseMeshEffect
         }
         else
         {
-            //if (_isFadeout)
-            //{
-            //    Vector2 temp = posOffset;
-            //    temp.x *= -1;
-                return Vector2.Lerp(_posOffset, Vector2.zero, curveX);
-            //}
-            //else
-            //{
-            //    return Vector2.Lerp(_posOffset, Vector2.zero, curveX);
-            //}
-            //return Vector2.Lerp(posOffset, Vector2.zero, curveX);
+            return Vector2.Lerp(_posOffset, Vector2.zero, curveX);
         }
     }
 
@@ -476,12 +747,13 @@ public class MagicText : BaseMeshEffect
             return 0;
         }
 
-        if (randomOrder)
+
+        if (_randomOrder)
         {
             index = _randomOrderList[index];
         }
 
-        float timeOff = (index / 4) * perTextInterval * perTextSpeed;
+        float timeOff = (index / 4) * _perTextInterval * _perTextSpeed;
         //一个字体网格四个顶点
         float curveX = _x - (_isFadeout ?  -timeOff : timeOff);
 
@@ -492,7 +764,7 @@ public class MagicText : BaseMeshEffect
         //淡出模式的动画结束标志判断
         if (_isFadeout)
         {
-            if (!Loop && curveX > CURVE_MAX_TIME && _isFadeIn)
+            if (!_loop && curveX > CURVE_MAX_TIME && _isFadeIn)
             {
                 return INVALID;
             }
@@ -504,7 +776,7 @@ public class MagicText : BaseMeshEffect
         }
         else
         {
-            if (!Loop && curveX < CURVE_MIN_TIME && _isFadeIn)
+            if (!_loop && curveX < CURVE_MIN_TIME && _isFadeIn)
             {
                 return INVALID;
             }
@@ -512,88 +784,28 @@ public class MagicText : BaseMeshEffect
             if (!_onceEnd && index == endVerticIndex && curveX >= CURVE_MAX_TIME)
             {
                 _onceEnd = true;
-                //loop间隔随机因子计算
-                if (isRandomForLoopInterval)
+                if (!_loop)
                 {
-                    _randomForLoopInterval = Random.Range(-randomRangeForLoopInterval, randomRangeForLoopInterval);
+                    //切换阶段
+                    _stage++;
+                    SetParamsOnStageChanged();
+                }
+
+                //loop间隔随机因子计算
+                if (_isRandomForLoopInterval)
+                {
+                    _randomForLoopInterval = Random.Range(-_randomRangeForLoopInterval, _randomRangeForLoopInterval);
                 }
             }
         }
 
-        
-
-        return animCurve.Evaluate(curveX);
-    }
-
-    
-    float Y(int index)
-    {
-        if (!IsStart)
-        {
-            return 0;
-        }
-
-        //一个字体网格四个顶点
-        float tempX = _x - (index / 4) * perTextInterval * perTextSpeed;
-        //未循环 且初始不可见
-        if(!Loop && tempX < 0 && _isFadeIn)
-        {
-            return INVALID;
-        }
-        switch (periodicType)
-        {
-            case PeriodicFunction.Type.Sawtooth:
-                return PeriodicFunction.Sawtooth(tempX, loopInterval * perTextSpeed, frequency * 2, 0, atten);
-
-            case PeriodicFunction.Type.SawtoothPlus:
-                return PeriodicFunction.SawtoothWithoutNegative(tempX, loopInterval * perTextSpeed, frequency * 2, 0, atten);
-
-            case PeriodicFunction.Type.Sine:
-                return PeriodicFunction.Sine(tempX, loopInterval * perTextSpeed, frequency * 2, 0, atten);
-
-            case PeriodicFunction.Type.SinePlus:
-                return PeriodicFunction.SineWithoutNegative(tempX, loopInterval * perTextSpeed, frequency * 2, 0, atten);
-
-            case PeriodicFunction.Type.Linear01:
-                return PeriodicFunction.Linear01(tempX, loopInterval * perTextSpeed, frequency, 0, atten);
-
-            case PeriodicFunction.Type.Linear10:
-                return PeriodicFunction.Linear10(tempX, loopInterval * perTextSpeed, frequency, 0, atten);
-
-            default:
-                return 0;
-        }
-    }
-
-    float Y2(int index)
-    {
-        if (!IsStart)
-        {
-            return 0;
-        }
-
-        //一个字体网格四个顶点
-        float tempX = _x - (index / 4) * perTextInterval;
-        switch (periodicType)
-        {
-            case PeriodicFunction.Type.Sawtooth:
-                return PeriodicFunction.Sawtooth(tempX, loopInterval * perTextSpeed, frequency, 0, atten);
-
-            case PeriodicFunction.Type.SawtoothPlus:
-                return PeriodicFunction.SawtoothWithoutNegative(tempX, loopInterval * perTextSpeed, frequency, 0, atten);
-
-            case PeriodicFunction.Type.Sine:
-                return PeriodicFunction.Sine(tempX, loopInterval * perTextSpeed, frequency, 0, atten);
-
-            case PeriodicFunction.Type.SinePlus:
-                return PeriodicFunction.SineWithoutNegative(tempX, loopInterval * perTextSpeed, frequency, 0, atten);
-
-            default:
-                return 0;
-        }
+        return animCurve_1.Evaluate(curveX);
     }
     #endregion
 
+    #region 效果执行函数
+
+    Vector3 _tempDir = new Vector3();
     //跳跃效果
     void Jump(VertexHelper helper, ref UIVertex v, int i)
     {
@@ -602,7 +814,17 @@ public class MagicText : BaseMeshEffect
         {
             return;
         }
-        v.position.y = _verticesOriPos[i].y + SampleFromAnimCurve(i) * animFactor;
+        
+        //圆形布局需要计算方向
+        if(layout == Layout.Circle)
+        {
+            v.position = _verticesOriPos[i] + SampleFromAnimCurve(i) * _animFactor * _verticleYDir[i];
+        }
+        else
+        {
+            v.position.y = _verticesOriPos[i].y + SampleFromAnimCurve(i) * _animFactor;
+        }
+
         ProcessOffset(ref v, i);
     }
 
@@ -629,14 +851,25 @@ public class MagicText : BaseMeshEffect
         }
 
         Vector3 dir = Vector3.Normalize(_verticesOriPos[i] - _centerPos[i / 4]);
-        v.position = _verticesOriPos[i] + dir * y * animFactor;
+        v.position = _verticesOriPos[i] + dir * y * _animFactor;
 
         ProcessOffset(ref v, i);
+    }
+
+    void LayoutDefault(VertexHelper helper, ref UIVertex v)
+    {
+        for (int i = 0; i < helper.currentVertCount; i++)
+        {
+            helper.PopulateUIVertex(ref v, i);
+            v.position = _verticesOriPos[i];
+            helper.SetUIVertex(v, i);
+        }
     }
 
     //普通 只支持fadein/out  posOffset
     void Normal(VertexHelper helper, ref UIVertex v, int i)
     {
+        v.position = _verticesOriPos[i];
         if (!IsStart)
         {
             return;
@@ -650,11 +883,6 @@ public class MagicText : BaseMeshEffect
 
         ProcessOffset(ref v, i);
     }
-
-    //void TransparentText(VertexHelper helper, ref UIVertex v, int i)
-    //{
-    //    v.color.a = 0;
-    //}
 
     void Rotate(VertexHelper helper, ref UIVertex v, int i)
     {
@@ -678,50 +906,26 @@ public class MagicText : BaseMeshEffect
 
     void CircleLayout(VertexHelper helper, ref UIVertex v, int i)
     {
-        //Vector3 tempOriginPos = _verticesOriPos[i];
-        //Vector3 tempCenterPos = _centerPos[i / 4];
-        //Vector3 len = tempCenterPos - _circleCenter;
-        //Vector3 dir = Vector3.Normalize(len);
-        //Vector3 center = new Vector3(0, 1, 0);
-        //float cos = Vector3.Dot(dir, center);
-        //float sin = Mathf.Sqrt(1 - cos * cos);
-        //if(i >= _verticesCount / 2)
-        //{
-        //    sin = -sin;
-        //}
-
-        //tempOriginPos -= tempCenterPos;
-        //v.position.x = tempOriginPos.x * cos - tempOriginPos.y * sin;
-        //v.position.y = tempOriginPos.x * sin + tempOriginPos.y * cos;
-        //v.position += tempCenterPos;
-
-        //Vector3 R = dir * radius;
-        //Vector3 off = len - R;
-        //v.position -= off;
-
-        //Vector3 textCenter = _circleCenter + radius;
-
-
-        float angle = 0;
+        float curAngle = 0;
         if (_verticesCount / 4 % 2 == 0)
         {
-            angle = (_verticesCount / 8 - i / 4) * textInterval;
+            curAngle = (_verticesCount / 8 - i / 4) * _angle;
             if (i / 4 < _verticesCount / 8)
             {
-                angle = (_verticesCount / 8 - i / 4 - 1) * textInterval + textInterval / 2;
+                curAngle = (_verticesCount / 8 - i / 4 - 1) * _angle + _angle / 2;
             }
             else
             {
-                angle =  -(i / 4 - _verticesCount / 8) * textInterval - textInterval / 2;
+                curAngle =  -(i / 4 - _verticesCount / 8) * _angle - _angle / 2;
             }
         }
         else
         {
-            angle = (_verticesCount / 8 - i / 4) * textInterval;
+            curAngle = (_verticesCount / 8 - i / 4) * _angle;
         }
 
-        float sin = Mathf.Sin(angle / 180 * Mathf.PI);
-        float cos = Mathf.Cos(angle / 180 * Mathf.PI);
+        float sin = Mathf.Sin(curAngle / 180 * Mathf.PI);
+        float cos = Mathf.Cos(curAngle / 180 * Mathf.PI);
         Vector3 tempTextCenter = _textCenter;
         tempTextCenter -= _circleCenter;
         Vector3 tempCurCenter = new Vector3();
@@ -737,6 +941,26 @@ public class MagicText : BaseMeshEffect
         v.position += tempCurCenter;
     }
 
+    void Italic(VertexHelper helper, ref UIVertex v, int i)
+    {
+        //float y = SampleFromAnimCurve(i);
+        //if (!IsValide(y))
+        //{
+        //    return;
+        //}
+
+        if (i % 4 == 0)
+        {
+            v.position.x += italicFactor.x;
+            //ProcessOffset(ref v, i);
+        }
+        else if(i % 4 == 1)
+        {
+            v.position.x += italicFactor.x;
+            //ProcessOffset(ref v, i);
+        }
+    }
+
     Color _originColor;
     void ChangeColor(VertexHelper helper, ref UIVertex v, int i)
     {
@@ -745,94 +969,99 @@ public class MagicText : BaseMeshEffect
         {
             return;
         }
-        v.color = Color32.Lerp(_originColor, textColor, y);
+        byte curAlpah = v.color.a;
+        v.color = Color32.Lerp(_originColor, _textColor, y);
+        v.color.a = curAlpah;
     }
 
-    Color[] rainbowColors = new Color[] {
-        Color.red,
-        new Color(1, 165f/255f, 0),
-        Color.yellow,
-        Color.green,
-        new Color(0, 127f/255f, 1),
-        Color.blue,
-        new Color(139f/255f, 0, 1)
-    };
+    //Color[] rainbowColors = new Color[] {
+    //    Color.red,
+    //    new Color(1, 165f/255f, 0),
+    //    Color.yellow,
+    //    Color.green,
+    //    new Color(0, 127f/255f, 1),
+    //    Color.blue,
+    //    new Color(139f/255f, 0, 1)
+    //};
 
-    void Rainbow(VertexHelper helper, ref UIVertex v, int i)
-    {
-        //确定当前所处在哪一个周期
-        float temp = _x - (i / 4) * perTextInterval;
-        temp %= frequency + loopInterval * perTextSpeed;
-        int rainbowIndex = 0;
-        if (temp < frequency && temp >= 0)
-        {
-            rainbowIndex = Mathf.FloorToInt(temp);
-            if (rainbowIndex == 0)
-            {
-                v.color = Color32.Lerp(_originColor, rainbowColors[0], Y(i));
-            }
-            else if (rainbowIndex == 7)
-            {
-                v.color = Color32.Lerp(rainbowColors[6], _originColor, Y(i));
-            }
-            else
-            {
-                v.color = Color32.Lerp(rainbowColors[rainbowIndex - 1], rainbowColors[rainbowIndex], Y(i));
-            }
-        }
-    }
+    //void Rainbow(VertexHelper helper, ref UIVertex v, int i)
+    //{
+    //    //确定当前所处在哪一个周期
+    //    float temp = _x - (i / 4) * perTextInterval;
+    //    temp %= frequency + loopInterval * perTextSpeed;
+    //    int rainbowIndex = 0;
+    //    if (temp < frequency && temp >= 0)
+    //    {
+    //        rainbowIndex = Mathf.FloorToInt(temp);
+    //        if (rainbowIndex == 0)
+    //        {
+    //            v.color = Color32.Lerp(_originColor, rainbowColors[0], Y(i));
+    //        }
+    //        else if (rainbowIndex == 7)
+    //        {
+    //            v.color = Color32.Lerp(rainbowColors[6], _originColor, Y(i));
+    //        }
+    //        else
+    //        {
+    //            v.color = Color32.Lerp(rainbowColors[rainbowIndex - 1], rainbowColors[rainbowIndex], Y(i));
+    //        }
+    //    }
+    //}
+    #endregion
 
     #endregion
 
+    #region 参数校验
+
     //曲线检测
-    void CheckCurve()
+    public bool CheckCurve()
     {
-        if(animCurve != null && animCurve.length > 0)
+        if(animCurve_1 != null && animCurve_1.length > 0)
         {
             //右边界校验 加0.01的范围值 避免误伤
-            if(animCurve[animCurve.length - 1].time > CURVE_MAX_TIME + .01f)
+            if(animCurve_1[animCurve_1.length - 1].time > CURVE_MAX_TIME + .01f)
             {
-                Debug.LogError("曲线参数 curve 的横坐标最大值不能超过1,时间可以配合 speed 参数控制. 当前值:" + animCurve[animCurve.length - 1].time);
+                Debug.LogError("曲线参数 curve 的横坐标最大值不能超过1,时间可以配合 speed 参数控制. 当前值:" + animCurve_1[animCurve_1.length - 1].time);
+                return false;
             }
 
             //左边界校验
-            if (animCurve[0].time < CURVE_MIN_TIME - .01f)
+            if (animCurve_1[0].time < CURVE_MIN_TIME - .01f)
             {
-                Debug.LogError("曲线参数 curve 的横坐标最小值不能超过0. 当前值:" + animCurve[0].time);
+                Debug.LogError("曲线参数 curve 的横坐标最小值不能超过0. 当前值:" + animCurve_1[0].time);
+                return false;
             }
             //wrapModel校验
-            if (animCurve.preWrapMode != WrapMode.Clamp)
+            if (animCurve_1.preWrapMode != WrapMode.Clamp)
             {
-                animCurve.preWrapMode = WrapMode.Clamp;
+                animCurve_1.preWrapMode = WrapMode.Clamp;
             }
-            if(animCurve.postWrapMode != WrapMode.Clamp)
+            if(animCurve_1.postWrapMode != WrapMode.Clamp)
             {
-                animCurve.postWrapMode = WrapMode.Clamp;
+                animCurve_1.postWrapMode = WrapMode.Clamp;
             }
 
             //TODO 结尾值校验
 
         }
+
+        return true;
     }
 
     //loop模式下参数检测
     void CheckLoop()
     {
-        if (Loop)
-        {
-            //loop模式下不支持fadein
-            if (isFadein)
-            {
-                isFadein = false;
-            }
-
-            //loop模式下不支持PosOffset
-            if (openPosOffset)
-            {
-                openPosOffset = false;
-            }
-        }
+        //if (Loop_1)
+        //{
+        //    //loop模式下不支持PosOffset
+        //    if (openPosOffset_1)
+        //    {
+        //        openPosOffset_1 = false;
+        //    }
+        //}
     }
+
+    #endregion
 
     //输入值是否有效
     bool IsValide(float val)
@@ -851,42 +1080,34 @@ public class MagicText : BaseMeshEffect
         }
     }
 
-    List<int> GetRandomOrder()
-    {
-        Debug.LogError("GetRandomOrder");
-        List<int> order = new List<int>();
 
-        for (int i = 0; i < _verticesOriPos.Count; i++)
-        {
-            order.Add(i);
-        }
 
-        int maxOrder = order.Count / 4;
-        for (int i = 0; i < order.Count; i+=4)
-        {
-            int randomOrder = Random.Range(0, maxOrder);
-            int sweapIndex = randomOrder * 4;
-            for (int j = 0; j < 4; j++)
-            {
-                order[i + j] = order[i + j] ^ order[sweapIndex + j];
-                order[sweapIndex + j] = order[i + j] ^ order[sweapIndex + j];
-                order[i + j] = order[i + j] ^ order[sweapIndex + j];
-            }
-        }
-        //Debug.LogError();
-        //string s = "";
-        //for (int i = 0; i < order.Count; i++)
-        //{
-        //    s += order[i] + " , ";
-        //}
-        //Debug.LogError(s);
 
-        return order;
-    }
+    ////获得随机序列
+    //List<int> GetRandomOrder()
+    //{
+    //    List<int> order = new List<int>();
 
-    void SwipTwoOrder()
-    {
+    //    for (int i = 0; i < _verticesOriPos.Count; i++)
+    //    {
+    //        order.Add(i);
+    //    }
 
-    }
+    //    int maxOrder = order.Count >> 2;
+    //    for (int i = 0; i < order.Count; i+=4)
+    //    {
+    //        int randomOrder = Random.Range(0, maxOrder);
+    //        int sweapIndex = randomOrder << 2;
+    //        for (int j = 0; j < 4; j++)
+    //        {
+    //            order[i + j] = order[i + j] ^ order[sweapIndex + j];
+    //            order[sweapIndex + j] = order[i + j] ^ order[sweapIndex + j];
+    //            order[i + j] = order[i + j] ^ order[sweapIndex + j];
+    //        }
+    //    }
+
+    //    return order;
+    //}
+
+
 }
-
