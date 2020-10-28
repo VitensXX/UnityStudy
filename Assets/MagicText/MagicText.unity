@@ -162,14 +162,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -214,6 +218,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -233,6 +238,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &86914111
@@ -325,14 +352,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -377,6 +408,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -396,6 +428,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &97141069
@@ -608,14 +662,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -660,6 +718,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -679,6 +738,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &490848630
@@ -771,14 +852,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -823,6 +908,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -842,6 +928,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &791074841
@@ -934,14 +1042,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -986,6 +1098,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -1005,6 +1118,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &879491755
@@ -1391,14 +1526,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -1443,6 +1582,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -1462,6 +1602,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1080551813
@@ -1663,14 +1825,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 2
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -1715,6 +1881,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -1734,6 +1901,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1172129909
@@ -1826,14 +2015,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -1878,6 +2071,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -1897,6 +2091,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1186559898
@@ -2077,14 +2293,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -2129,6 +2349,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -2148,6 +2369,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1436382862
@@ -2240,14 +2483,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 1
   radius: 298.5
   angle: 19.04
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -2319,6 +2566,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -2338,6 +2586,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1556823288
@@ -2430,14 +2700,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -2482,6 +2756,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -2501,6 +2776,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1625211290
@@ -2610,14 +2907,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -2662,6 +2963,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -2681,6 +2983,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1688826530
@@ -2788,14 +3112,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -2840,6 +3168,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -2859,6 +3188,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1691705314
@@ -2951,14 +3302,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -3003,6 +3358,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -3022,6 +3378,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1715281073
@@ -3183,14 +3561,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -3235,6 +3617,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -3254,6 +3637,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1840414039
@@ -3314,7 +3719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1954810826
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3346,16 +3751,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 1
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 1
+  loopInterval_0: 3
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 1
   radius: 200
   angle: 18.37
   italicFactor: {x: 0, y: 0}
-  enableAnim: 1
-  unscaledTime: 0
   fadein_1: 1
-  type_1: 2
+  type_1: 0
   animCurve_1:
     serializedVersion: 2
     m_Curve:
@@ -3421,10 +3830,11 @@ MonoBehaviour:
   randomRangeForLoopInterval_1: 0
   animFactor_1: 30
   textColor_1: {r: 1, g: 0, b: 0, a: 1}
-  openPosOffset_1: 1
+  openPosOffset_1: 0
   posOffset_1: {x: 100, y: 0}
   randomOrder_1: 0
-  stage_2: 1
+  stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -3461,7 +3871,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   perTextSpeed_2: 1
   perTextInterval_2: 1
-  loop_2: 1
+  loop_2: 0
   loopInterval_2: 1
   isRandomForLoopInterval_2: 0
   randomRangeForLoopInterval_2: 0
@@ -3470,7 +3880,29 @@ MonoBehaviour:
   openPosOffset_2: 0
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
-  stage_3: 0
+  stage_3: 1
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 5
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1954810828
@@ -3563,14 +3995,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db618be7ca4045469e081edaffa8f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableAnim: 0
+  unscaledTime: 0
   playOnAwake: 1
   awakeDelay: 0
+  loop_0: 0
+  loopInterval_0: 5
+  isRandomForLoopInterval_0: 0
+  randomRangeForLoopInterval_0: 0
   layout: 0
   radius: 0
   angle: 0
   italicFactor: {x: 0, y: 0}
-  enableAnim: 0
-  unscaledTime: 0
   fadein_1: 0
   type_1: 1
   animCurve_1:
@@ -3615,6 +4051,7 @@ MonoBehaviour:
   posOffset_1: {x: 0, y: 0}
   randomOrder_1: 0
   stage_2: 0
+  waitForStageSwitch_2: 0
   type_2: 1
   animCurve_2:
     serializedVersion: 2
@@ -3634,6 +4071,28 @@ MonoBehaviour:
   posOffset_2: {x: 0, y: 0}
   randomOrder_2: 0
   stage_3: 0
+  fadeoutType_3: 0
+  type_3: 0
+  forceFadeoutDelay_3: 0
+  forceFadeoutTime_3: 0
+  animCurve_3:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  perTextSpeed_3: 3
+  perTextInterval_3: 0.3
+  loop_3: 0
+  loopInterval_3: 5
+  isRandomForLoopInterval_3: 0
+  randomRangeForLoopInterval_3: 0
+  animFactor_3: 30
+  textColor_3: {r: 1, g: 0, b: 0, a: 1}
+  openPosOffset_3: 0
+  posOffset_3: {x: 0, y: 0}
+  randomOrder_3: 0
+  waitForStageSwitch_3: 0
   autoDisappear: 0
   duration: 0
 --- !u!114 &1968669702

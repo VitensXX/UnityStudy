@@ -22,7 +22,8 @@ public class MagicTextEditor : Editor
 {
     SerializedObject so;
 
-    SerializedProperty _enableAnim, _unscaledTime, _playOnAwake, _radius, _angle, _italicFactor, _awakeDelay;
+    SerializedProperty _enableAnim, _unscaledTime, _playOnAwake, _radius, _angle, _italicFactor, _awakeDelay,
+        _loop_0, _loopInterval_0, _isRandomForLoopInterval_0, _randomRangeForLoopInterval_0;
     //布局相关参数
     SerializedProperty _layout;
 
@@ -32,7 +33,11 @@ public class MagicTextEditor : Editor
 
     SerializedProperty _stage_2, _type_2, _perTextInterval_2, _loopInterval_2, _perTextSpeed_2, _animFactor_2,
         _textColor_2, _loop_2, _animCurve_2, _isRandomForLoopInterval_2, _randomRangeForLoopInterval_2,
-        _openPosOffset_2, _posOffset_2, _randomOrder_2;
+        _openPosOffset_2, _posOffset_2, _randomOrder_2, _waitForStageSwitch_2;
+
+    SerializedProperty _stage_3, _type_3, _perTextInterval_3, _loopInterval_3, _perTextSpeed_3, _animFactor_3,
+        _textColor_3, _loop_3, _animCurve_3, _isRandomForLoopInterval_3, _randomRangeForLoopInterval_3,
+        _openPosOffset_3, _posOffset_3, _randomOrder_3, _waitForStageSwitch_3, _forceFadeoutDelay_3, _forceFadeoutTime_3;
 
     MagicText _ctrl;
 
@@ -45,6 +50,11 @@ public class MagicTextEditor : Editor
         _unscaledTime = so.FindProperty("unscaledTime");
         _playOnAwake = so.FindProperty("playOnAwake");
         _awakeDelay = so.FindProperty("awakeDelay");
+        _loop_0 = so.FindProperty("loop_0");
+        _loopInterval_0 = so.FindProperty("loopInterval_0");
+        _isRandomForLoopInterval_0 = so.FindProperty("isRandomForLoopInterval_0");
+        _randomRangeForLoopInterval_0 = so.FindProperty("randomRangeForLoopInterval_0");
+
 
         //layout
         _layout = so.FindProperty("layout");
@@ -85,6 +95,26 @@ public class MagicTextEditor : Editor
         _openPosOffset_2 = so.FindProperty("openPosOffset_2");
         _posOffset_2 = so.FindProperty("posOffset_2");
         _randomOrder_2 = so.FindProperty("randomOrder_2");
+        _waitForStageSwitch_2 = so.FindProperty("waitForStageSwitch_2");
+
+        //fadeout 第三阶段
+        _stage_3 = so.FindProperty("stage_3");
+        _type_3 = so.FindProperty("type_3");
+        _perTextInterval_3 = so.FindProperty("perTextInterval_3");
+        _loopInterval_3 = so.FindProperty("loopInterval_3");
+        _animFactor_3 = so.FindProperty("animFactor_3");
+        _textColor_3 = so.FindProperty("textColor_3");
+        _perTextSpeed_3 = so.FindProperty("perTextSpeed_3");
+        _loop_3 = so.FindProperty("loop_3");
+        _animCurve_3 = so.FindProperty("animCurve_3");
+        _isRandomForLoopInterval_3 = so.FindProperty("isRandomForLoopInterval_3");
+        _randomRangeForLoopInterval_3 = so.FindProperty("randomRangeForLoopInterval_3");
+        _openPosOffset_3 = so.FindProperty("openPosOffset_3");
+        _posOffset_3 = so.FindProperty("posOffset_3");
+        _randomOrder_3 = so.FindProperty("randomOrder_3");
+        _waitForStageSwitch_3 = so.FindProperty("waitForStageSwitch_3");
+        _forceFadeoutDelay_3 = so.FindProperty("forceFadeoutDelay_3");
+        _forceFadeoutTime_3 = so.FindProperty("forceFadeoutTime_3");
     }
 
     bool _fadeinFold, _displayFold, _fadeoutFold;
@@ -100,17 +130,46 @@ public class MagicTextEditor : Editor
         EditorGUILayout.PropertyField(_enableAnim);
         if (_ctrl.enableAnim)
         {
+            EditorGUI.indentLevel++;
             EditorGUILayout.PropertyField(_unscaledTime);
             EditorGUILayout.PropertyField(_playOnAwake);
-            if (_ctrl.playOnAwake)
+            //需要fadein才由awakeDelay控制最初的透明不显示节奏 否则由display阶段的wait控制
+            if (_ctrl.playOnAwake && _ctrl.fadein_1)
             {
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(_awakeDelay);
                 EditorGUI.indentLevel--;
             }
 
+            EditorGUILayout.PropertyField(_loop_0);
+
+            if (_ctrl.loop_0)
+            {
+                using (new BoxScope(false))
+                {
+                    EditorGUILayout.LabelField("所有阶段为一个整体的loop设置");
+                    EditorGUI.indentLevel++;
+                    EditorGUILayout.PropertyField(_loopInterval_0);
+                    EditorGUILayout.PropertyField(_isRandomForLoopInterval_0);
+                    if (_ctrl.isRandomForLoopInterval_0)
+                    {
+                        EditorGUILayout.PropertyField(_randomRangeForLoopInterval_0);
+                    }
+                    EditorGUI.indentLevel--;
+                }
+            }
+
+            EditorGUI.indentLevel--;
+
+            EditorGUILayout.Space();
             //第一阶段 淡入
+            EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PropertyField(_isFadein_1, new GUIContent("第一阶段【淡入】"));
+            if (_ctrl.fadein_1 && _ctrl.loop_1)
+            {
+                EditorGUILayout.LabelField("loop");
+            }
+            EditorGUILayout.EndHorizontal();
             if (_ctrl.fadein_1)
             {
                 using (new BoxScope(true))
@@ -123,7 +182,14 @@ public class MagicTextEditor : Editor
                 }
             }
 
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PropertyField(_stage_2, new GUIContent("第二阶段【持续展示阶段】"));
+            if(_ctrl.stage_2 && _ctrl.loop_2)
+            {
+                EditorGUILayout.LabelField("loop");
+            }
+            EditorGUILayout.EndHorizontal();
             if (_ctrl.stage_2)
             {
                 using (new BoxScope(true))
@@ -132,6 +198,31 @@ public class MagicTextEditor : Editor
                     if (_displayFold)
                     {
                         DisplayStageInspector();
+                    }
+                }
+            }
+
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PropertyField(_stage_3, new GUIContent("第三阶段【淡出阶段】"));
+            if (_ctrl.stage_3 )
+            {
+                string tip = "";
+                if (_ctrl.loop_3)
+                    tip = "loop   ";
+                if (_ctrl.forceFadeoutDelay_3)
+                    tip += "ForceFadeout delay:" + _ctrl.forceFadeoutTime_3;
+                EditorGUILayout.LabelField(tip);
+            }
+            EditorGUILayout.EndHorizontal();
+            if (_ctrl.stage_3)
+            {
+                using (new BoxScope(true))
+                {
+                    _fadeoutFold = EditorGUILayout.Foldout(_fadeoutFold, "淡出阶段参数设置", true);
+                    if (_fadeoutFold)
+                    {
+                        FadeoutInspector();
                     }
                 }
             }
@@ -260,6 +351,7 @@ public class MagicTextEditor : Editor
 
     void DisplayStageInspector()
     {
+        EditorGUILayout.PropertyField(_waitForStageSwitch_2);
         EditorGUILayout.PropertyField(_loop_2);
 
         if (_ctrl.loop_2)
@@ -312,4 +404,72 @@ public class MagicTextEditor : Editor
         }
     }
 
+    void FadeoutInspector()
+    {
+        EditorGUILayout.PropertyField(_forceFadeoutDelay_3);
+        if (_ctrl.forceFadeoutDelay_3)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(_forceFadeoutTime_3);
+            EditorGUI.indentLevel--;
+        }
+        else
+        {
+            EditorGUILayout.PropertyField(_waitForStageSwitch_3);
+        }
+        EditorGUILayout.PropertyField(_loop_3);
+
+        if (_ctrl.loop_3)
+        {
+            using (new BoxScope(false))
+            {
+                EditorGUILayout.LabelField("loop相关参数设置");
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(_loopInterval_3);
+                EditorGUILayout.PropertyField(_isRandomForLoopInterval_3);
+                if (_ctrl.isRandomForLoopInterval_3)
+                {
+                    EditorGUILayout.PropertyField(_randomRangeForLoopInterval_3);
+                }
+                EditorGUI.indentLevel--;
+            }
+        }
+
+        using (new BoxScope(false))
+        {
+            EditorGUILayout.LabelField("动画参数设置");
+            EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(_type_3, new GUIContent("Type"));
+            EditorGUILayout.PropertyField(_animCurve_3, new GUIContent("Anim Curve"));
+            if (!_ctrl.CheckCurve())
+            {
+                EditorGUILayout.HelpBox("Anim Curve曲线横坐标区间应该限制在[0-3]之间", MessageType.Error);
+            }
+
+            //if(_ctrl.type_3 == MagicText.FadeoutType.Other)
+            //{
+                if (_ctrl.type_3 == MagicText.Type.Color)
+                {
+                    EditorGUILayout.PropertyField(_textColor_3, new GUIContent("Color"));
+                }
+                else if (_ctrl.type_3 != MagicText.Type.Normal)
+                {
+                    EditorGUILayout.PropertyField(_animFactor_3, new GUIContent("Anim Factor"));
+                }
+
+            //}
+
+            EditorGUILayout.PropertyField(_perTextSpeed_3);
+            EditorGUILayout.PropertyField(_perTextInterval_3);
+            EditorGUILayout.PropertyField(_randomOrder_3);
+            EditorGUILayout.PropertyField(_openPosOffset_3);
+            if (_ctrl.openPosOffset_3)
+            {
+                EditorGUI.indentLevel++;
+                EditorGUILayout.PropertyField(_posOffset_3);
+                EditorGUI.indentLevel--;
+            }
+            EditorGUI.indentLevel--;
+        }
+    }
 }
