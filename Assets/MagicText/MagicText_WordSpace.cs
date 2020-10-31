@@ -1,13 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
 /// 字间距调整
 /// </summary>
-public class MagicText_WordSpace : Shadow
+public class MagicText_WordSpace : BaseMeshEffect
 {
+    private const string REGEX_TAGS = @"<b>|</b>|<i>|</i>|<size=.*?>|</size>|<color=.*?>|</color>|<material=.*?>|</material>";
+
+    public float space = 0f;
+
+#if UNITY_EDITOR
+    protected override void OnValidate()
+    {
+        offset = space;
+        base.OnValidate();
+    }
+#endif
+
+    public float offset
+    {
+        get { return space; }
+        set
+        {
+            if (space == value)
+                return;
+            space = value;
+            if (graphic != null)
+                graphic.SetVerticesDirty();
+        }
+    }
+
     public override void ModifyMesh(VertexHelper vh)
     {
         if (!IsActive())
@@ -17,41 +43,116 @@ public class MagicText_WordSpace : Shadow
 
         List<UIVertex> verts = new List<UIVertex>();
         vh.GetUIVertexStream(verts);
-        var start = 0;
-        var end = 0;
 
-        //和自带的Outline的差异就在这里,分别想四个角落方向扩展四份网格,弥补之前的不足
-        //相应的带来了额外的消耗主要在OverDraw上.
-        for (int i = -1; i <= 1; i++)
+        Text textComponent = GetComponent<Text>();
+        List<string> lines = new List<string>();
+        for (int i = 0; i < textComponent.cachedTextGenerator.lineCount; i++)
         {
-            for (int j = -1; j <= 1; j++)
+            int startIndex = textComponent.cachedTextGenerator.lines[i].startCharIdx;
+            int endIndex = (i < textComponent.cachedTextGenerator.lineCount - 1) ? textComponent.cachedTextGenerator.lines[i + 1].startCharIdx : textComponent.text.Length;
+            lines.Add(textComponent.text.Substring(startIndex, endIndex - startIndex));
+        }
+
+        float charOffset = offset * (float)textComponent.fontSize / 100f;
+        float alignmentFactor = 0;
+
+        IEnumerator matchedTagCollection = null;
+        Match currentMatchedTag = null;
+
+        if ((textComponent.alignment == TextAnchor.LowerLeft) || (textComponent.alignment == TextAnchor.MiddleLeft) || (textComponent.alignment == TextAnchor.UpperLeft))
+        {
+            alignmentFactor = 0f;
+        }
+        else if ((textComponent.alignment == TextAnchor.LowerCenter) || (textComponent.alignment == TextAnchor.MiddleCenter) || (textComponent.alignment == TextAnchor.UpperCenter))
+        {
+            alignmentFactor = 0.5f;
+        }
+        else if ((textComponent.alignment == TextAnchor.LowerRight) || (textComponent.alignment == TextAnchor.MiddleRight) || (textComponent.alignment == TextAnchor.UpperRight))
+        {
+            alignmentFactor = 1f;
+        }
+
+        bool hasToContinue = true;
+        int charIndex = 0;
+        for (int lineIndex = 0; (lineIndex < lines.Count - 0) && (hasToContinue == true); lineIndex++)
+        {
+            string line = lines[lineIndex];
+            int lineLength = line.Length;
+
+            if (lineLength > textComponent.cachedTextGenerator.characterCountVisible - charIndex)
             {
-                if ((i != 0) && (j != 0))
+                lineLength = textComponent.cachedTextGenerator.characterCountVisible - charIndex;
+                line = line.Substring(0, lineLength) + " ";
+                lineLength++;
+            }
+
+            if (textComponent.supportRichText)
+            {
+                matchedTagCollection = GetRegexMatchedTags(line, out lineLength).GetEnumerator();
+                currentMatchedTag = null;
+                if (matchedTagCollection.MoveNext())
                 {
-                    start = end;
-                    end = verts.Count;
-                    ApplyShadowZeroAlloc(verts, effectColor, start, verts.Count, i * effectDistance.x * 0.7f, j * effectDistance.y * 0.7f);
+                    currentMatchedTag = (Match)matchedTagCollection.Current;
                 }
+            }
+
+            bool lineEndsWithEmptyChar = (lines[lineIndex].Length > 0) && ((lines[lineIndex][lines[lineIndex].Length - 1] == ' ') || (lines[lineIndex][lines[lineIndex].Length - 1] == '\n'));
+
+            float alignmentOffset = -(lineLength - 1 - (lineEndsWithEmptyChar ? 1 : 0)) * charOffset * alignmentFactor;
+            float visibleCharInLineIndex = 0;
+            for (int charInLineIndex = 0; (charInLineIndex < line.Length) && (hasToContinue == true); charInLineIndex++)
+            {
+                if (textComponent.supportRichText)
+                {
+                    if (currentMatchedTag != null && currentMatchedTag.Index == charInLineIndex)
+                    {
+                        charInLineIndex += currentMatchedTag.Length - 1;
+                        charIndex += currentMatchedTag.Length - 1;
+
+                        visibleCharInLineIndex--;
+
+                        currentMatchedTag = null;
+                        if (matchedTagCollection.MoveNext())
+                        {
+                            currentMatchedTag = (Match)matchedTagCollection.Current;
+                        }
+                    }
+                }
+
+                if (charIndex * 6 + 5 >= verts.Count)
+                {
+                    hasToContinue = false;
+                    break;
+                }
+
+                for (int i = 0; i < 6; i++)
+                {
+                    UIVertex vert = verts[charIndex * 6 + i];
+                    vert.position += Vector3.right * (charOffset * visibleCharInLineIndex + alignmentOffset);
+                    verts[charIndex * 6 + i] = vert;
+                }
+
+                charIndex++;
+                visibleCharInLineIndex++;
             }
         }
 
-        start = end;
-        end = verts.Count;
-        ApplyShadowZeroAlloc(verts, effectColor, start, verts.Count, -effectDistance.x, 0);
-
-        start = end;
-        end = verts.Count;
-        ApplyShadowZeroAlloc(verts, effectColor, start, verts.Count, effectDistance.x, 0);
-
-        start = end;
-        end = verts.Count;
-        ApplyShadowZeroAlloc(verts, effectColor, start, verts.Count, 0, -effectDistance.y);
-
-        start = end;
-        end = verts.Count;
-        ApplyShadowZeroAlloc(verts, effectColor, start, verts.Count, 0, effectDistance.y);
-
         vh.Clear();
         vh.AddUIVertexTriangleStream(verts);
+    }
+
+    private MatchCollection GetRegexMatchedTags(string text, out int lengthWithoutTags)
+    {
+        MatchCollection matchedTags = Regex.Matches(text, REGEX_TAGS);
+        lengthWithoutTags = 0;
+        int overallTagLength = 0;
+
+        foreach (Match matchedTag in matchedTags)
+        {
+            overallTagLength += matchedTag.Length;
+        }
+
+        lengthWithoutTags = text.Length - overallTagLength;
+        return matchedTags;
     }
 }
