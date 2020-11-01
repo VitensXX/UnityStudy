@@ -239,7 +239,6 @@ public class MagicText : BaseMeshEffect
     //阶段切换 参数重新赋值
     void SetParamsOnStageChanged()
     {
-        //Debug.LogError("SetParamsOnStageChanged " + _curStage);
         if (_curStage == Stage.Fadein)
         {
             _curType = type_1;
@@ -255,7 +254,7 @@ public class MagicText : BaseMeshEffect
             _openPosOffset = openPosOffset_1;
             _posOffset = posOffset_1;
             _orderType = order_1;
-            _x = 0;
+            //_x = 0;
         }
         else if (_curStage == Stage.Display)
         {
@@ -274,7 +273,7 @@ public class MagicText : BaseMeshEffect
             _openPosOffset = openPosOffset_2;
             _posOffset = posOffset_2;
             _orderType = order_2;
-            _x = 0;
+            //_x = 0;
         }
         else if(_curStage == Stage.Fadeout)
         {
@@ -292,16 +291,17 @@ public class MagicText : BaseMeshEffect
             _posOffset = posOffset_3;
             _orderType = order_3;
 
-            _x = 1;
+            //_x = 1;
             _isFadeout = true;
         }
         else if(_curStage == Stage.End)
         {
             _isFadeIn = enableAnim && fadein_1;
             _isFadeout = false;
-            _x = 0;
+            //_x = 0;
         }
 
+        _x = _orderType == OrderType.Back ? 1 : 0;
         //normal的情况下不需要曲线控制节奏,只需要给个默认曲线,便于检测终点即可
         if (_curType == Type.Normal)
         {
@@ -577,7 +577,7 @@ public class MagicText : BaseMeshEffect
                 if(_tickForLoopWait >= _loopInterval + _randomForLoopInterval)
                 {
                     _onceEnd = false;
-                    _x = 0;
+                    _x = _orderType == OrderType.Back ? CURVE_MAX_TIME : CURVE_MIN_TIME;
                     _tickForLoopWait = 0;
                 }
             }
@@ -593,7 +593,8 @@ public class MagicText : BaseMeshEffect
             }
         }
 
-        if (_isFadeout)
+        //if (_fadeout)
+        if (_orderType == OrderType.Back)
         {
             _x -= unscaledTime ? Time.unscaledDeltaTime * _perTextSpeed : Time.deltaTime * _perTextSpeed;
         }
@@ -613,7 +614,11 @@ public class MagicText : BaseMeshEffect
         //如果是开启动画且循环模式下,需要挂一个单独的画布,出于UI动静分离的考虑
         if (enableAnim && (loop_0 || fadein_1 && loop_1 || stage_2 && loop_2 || stage_3 && loop_3) && _canvas == null)
         {
-            _canvas = gameObject.AddComponent<Canvas>();
+            _canvas = gameObject.GetComponent<Canvas>();
+            if (_canvas == null)
+            {
+                _canvas = gameObject.AddComponent<Canvas>();
+            }
         }
 
         _text = GetComponent<Text>();
@@ -933,36 +938,64 @@ public class MagicText : BaseMeshEffect
 
     float SampleAlpha(int index)
     {
-        if (_orderType == OrderType.Random)
-        {
-            index = _randomOrderList[index];
-        }
-        index = IndexOffsetByTag(index);
+        float curveX = CalcCurveX(ref index);
 
-        float timeOff = (index / 4) * _perTextInterval * _perTextSpeed;
-        float curveX = _x - (_isFadeout ? -timeOff : timeOff);
-        //未循环 且初始不可见
-        if (curveX < 0 && (_isFadeIn || _isFadeout))
+        if (_curStage == Stage.Fadeout)
         {
-            return INVALID;
+            if(_orderType == OrderType.Back)
+            {
+                if (curveX > CURVE_MAX_TIME && (_isFadeIn || _isFadeout))
+                {
+                    return 1;
+                }
+
+                return alphaCurve_1.Evaluate(curveX);
+            }
+            else
+            {
+                //未循环 且初始不可见
+                if (curveX < CURVE_MIN_TIME && (_isFadeIn || _isFadeout))
+                {
+                    return 1;
+                }
+
+                return 1 - alphaCurve_1.Evaluate(curveX);
+            }
         }
-        return alphaCurve_1.Evaluate(curveX);
+        else
+        {
+            if (_orderType == OrderType.Back)
+            {
+                if (curveX > CURVE_MAX_TIME && (_isFadeIn || _isFadeout))
+                {
+                    return INVALID;
+                }
+
+                return 1 - alphaCurve_1.Evaluate(curveX);
+            }
+            else
+            {
+                //未循环 且初始不可见
+                if (curveX < CURVE_MIN_TIME && (_isFadeIn || _isFadeout))
+                {
+                    return INVALID;
+                }
+
+                return alphaCurve_1.Evaluate(curveX);
+            }
+        }
     }
 
     //坐标位子偏移采样
     Vector2 SampleOffset(int index)
     {
-        if (_orderType == OrderType.Random)
+        float curveX = CalcCurveX(ref index);
+        if (_isFadeout && _orderType != OrderType.Back || !_isFadeout && _orderType == OrderType.Back)
         {
-            index = _randomOrderList[index];
+            curveX = 1 - curveX;
         }
-        index = IndexOffsetByTag(index);
 
-        //一个字体网格四个顶点
-        float timeOff = (index >> 2) * _perTextInterval * _perTextSpeed;
-        //float tempX = _x - (index / 4) * perTextInterval * perTextSpeed;
-        float curveX = _x - (_isFadeout ? -timeOff : timeOff);
-        if (curveX < 0 || curveX > 1)
+        if (curveX < CURVE_MIN_TIME || curveX > CURVE_MAX_TIME)
         {
             return Vector2.zero;
         }
@@ -979,44 +1012,32 @@ public class MagicText : BaseMeshEffect
             return 0;
         }
 
-        if (_orderType == OrderType.Random)
-        {
-            //Debug.LogError(index+"  !!!!!!!!!!!");
-            index = _randomOrderList[index];
-            //Debug.LogError(index + "  ~~~~~~~~~~~~~");
+        float curveX = CalcCurveX(ref index);
 
-        }
+        int endVerticIndex = CalcEndVertIndex();
 
-        index = IndexOffsetByTag(index);
-
-        float timeOff = (index / 4) * _perTextInterval * _perTextSpeed;
-        //一个字体网格四个顶点
-        float curveX = _x - (_isFadeout ?  -timeOff : timeOff);
-
-        int lastNoTagVertIndex = GetLastNoTagVertIndex();
-        //动画最后一个顶点的索引 拉伸每四个顶点只有前两个顶点在表现
-        int endVerticIndex = _curType == Type.Stretch ? lastNoTagVertIndex - 3 : lastNoTagVertIndex - 1;
-        endVerticIndex = IndexOffsetByTag(endVerticIndex);
-
-        //淡出模式的动画结束标志判断
-        if (_isFadeout)
+        if (_orderType == OrderType.Back)
         {
             if (curveX > CURVE_MAX_TIME && (_isFadeIn || _isFadeout))
             {
                 return INVALID;
             }
 
+            //最后一个顶点动画结束标识
             if (!_onceEnd && index == endVerticIndex && curveX <= CURVE_MIN_TIME)
             {
+                //Debug.LogError(endVerticIndex);
                 _onceEnd = true;
-                if (loop_0)
+                if (!_loop)
                 {
+                    //切换阶段
                     PrepareSwitchStage();
                 }
+
                 //loop间隔随机因子计算
-                if (isRandomForLoopInterval_0)
+                if (_isRandomForLoopInterval)
                 {
-                    _randomForLoopInterval = Random.Range(-randomRangeForLoopInterval_0, randomRangeForLoopInterval_0);
+                    _randomForLoopInterval = Random.Range(-_randomRangeForLoopInterval, _randomRangeForLoopInterval);
                 }
             }
         }
@@ -1044,13 +1065,54 @@ public class MagicText : BaseMeshEffect
             }
         }
 
-        return _animCurve.Evaluate(curveX);
+        if (_orderType == OrderType.Back)
+        {
+            return _animCurve.Evaluate(1 - curveX);
+        }
+        else
+        {
+            return _animCurve.Evaluate(curveX);
+        }
     }
+
+    int CalcEndVertIndex()
+    {
+        int lastNoTagVertIndex = GetLastNoTagVertIndex();
+        //动画最后一个顶点的索引 拉伸每四个顶点只有前两个顶点在表现
+        int endVerticIndex = _curType == Type.Stretch ? lastNoTagVertIndex - 3 : lastNoTagVertIndex - 1;
+        endVerticIndex = endVerticIndex - (_tagOffset[endVerticIndex >> 2] << 2);
+
+        return endVerticIndex;
+    }
+
+    float CalcCurveX(ref int index)
+    {
+        if (_orderType == OrderType.Random)
+        {
+            index = _randomOrderList[index];
+            index = IndexOffsetByTag(index);
+        }
+        else if (_orderType == OrderType.Back)
+        {
+            index = _verticesCountWithTag - index - 1;
+            index = IndexOffsetByTag(index);
+        }
+        else
+        {
+            index = IndexOffsetByTag(index);
+        }
+
+        float timeOff = (index >> 2) * _perTextInterval * _perTextSpeed;
+        //一个字体网格四个顶点
+        //float curveX = _x - (_orderType == OrderType.Back ? -timeOff : timeOff);
+
+        return _x - (_orderType == OrderType.Back ? -timeOff : timeOff);
+    }
+
     #endregion
 
     #region 效果执行函数
 
-    Vector3 _tempDir = new Vector3();
     //跳跃效果
     void Jump(VertexHelper helper, ref UIVertex v, int i)
     {
@@ -1088,15 +1150,20 @@ public class MagicText : BaseMeshEffect
         {
             return;
         }
-
-        float y = SampleFromAnimCurve(i) - 1;//方便曲线理解 0-1
+        float y = SampleFromAnimCurve(i);
         if(!IsValide(y))
         {
+            v.position = _verticesOriPos[i];
             return;
         }
-        Vector3 dir = Vector3.Normalize(_verticesOriPos[i] - _centerPos[i / 4]);
+        //缩放 当Y为0时，是不能保持原样的，其他的都行 所以需要单独处理
+        if(y == 0)
+        {
+            y = 1;
+        }
+        Vector3 dir = _verticesOriPos[i] - _centerPos[i / 4];
 
-        v.position = _verticesOriPos[i] + dir * y * _animFactor;
+        v.position = _centerPos[i / 4] + dir * y * _animFactor;
 
         ProcessOffset(ref v, i);
     }
@@ -1344,7 +1411,9 @@ public class MagicText : BaseMeshEffect
     //富文本标签位记录,按文字索引记录
     List<bool> _textIsTag;
     List<int> _tagOffset;
+    List<int> _tagOffsetBack;
     int _lastTextIndex;
+    int _firstTextIndex;//第一个有效文本的索引，为了支持倒序
     bool _richPrcessed;//是否已经处理了富文本
     private void ProcessRichTags(string text)
     {
@@ -1388,12 +1457,18 @@ public class MagicText : BaseMeshEffect
 
         _verticesCount = _verticesCountWithTag - tags * 4;
 
+        _firstTextIndex = -1;
         //寻找最后一个有效字符(不是tag,因为tag是不会创建网格的)的位置
         for (int i = 0; i < _textIsTag.Count; i++)
         {
             if (!_textIsTag[i])
             {
                 _lastTextIndex = i;
+            }
+
+            if (_firstTextIndex == -1 && !_textIsTag[i])
+            {
+                _firstTextIndex = i;
             }
         }
 
@@ -1409,6 +1484,22 @@ public class MagicText : BaseMeshEffect
         for (int i = 0; i < _textIsTag.Count; i++)
         {
             _tagOffset.Add(totalTagCount);
+            if (_textIsTag[i])
+            {
+                totalTagCount++;
+            }
+        }
+
+        if(_tagOffsetBack == null)
+        {
+            _tagOffsetBack = new List<int>();
+        }
+        _tagOffsetBack.Clear();
+        totalTagCount = 0;
+        //记录每个位置的后方有多少个tag，为了支持 Order back
+        for (int i = _textIsTag.Count - 1; i >= 0; i--)
+        {
+            _tagOffsetBack.Add(totalTagCount);
             if (_textIsTag[i])
             {
                 totalTagCount++;
@@ -1437,7 +1528,14 @@ public class MagicText : BaseMeshEffect
             return i;
         }
 
-        return i - (_tagOffset[i >> 2] << 2);
+        if (_orderType == OrderType.Back)
+        {
+            return i - (_tagOffsetBack[i >> 2] << 2);
+        }
+        else
+        {
+            return i - (_tagOffset[i >> 2] << 2);
+        }
     }
 
     //获取最后一个不是tag的顶点索引
@@ -1447,7 +1545,15 @@ public class MagicText : BaseMeshEffect
         {
             return _verticesCountWithTag;
         }
-        return (_lastTextIndex + 1) << 2;
+
+        //if (_orderType == OrderType.Back)
+        //{
+        //    return (_verticesCount / 4 - _firstTextIndex) << 2;
+        //}
+        //else
+        //{
+            return (_lastTextIndex + 1) << 2;
+        //}
     }
 
     #endregion
