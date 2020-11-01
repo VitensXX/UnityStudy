@@ -25,7 +25,7 @@ public class MagicTextEditor : Editor
     SerializedProperty _enableAnim, _unscaledTime, _playOnAwake,  _awakeDelay,
         _loop_0, _loopInterval_0, _isRandomForLoopInterval_0, _randomRangeForLoopInterval_0;
     //布局相关参数
-    SerializedProperty _layout, _radius, _angle, _italicFactor;
+    SerializedProperty _layout, _radius, _angle, _italicFactor, _perspectiveFactor, _strethFactor;
 
     SerializedProperty _type_1, _perTextInterval_1, _loopInterval_1, _perTextSpeed_1,_animFactor_1,
         _textColor_1, _loop_1, _isFadein_1, _animCurve_1, _alphaCurve_1, _isRandomForLoopInterval_1, _randomRangeForLoopInterval_1,
@@ -62,6 +62,8 @@ public class MagicTextEditor : Editor
         _italicFactor = so.FindProperty("italicFactor");
         _radius = so.FindProperty("radius");
         _angle = so.FindProperty("angle");
+        _perspectiveFactor = so.FindProperty("perspectiveFactor");
+        _strethFactor = so.FindProperty("strethFactor");
 
         //fadein  第一阶段
         _type_1 = so.FindProperty("type_1");
@@ -305,7 +307,11 @@ public class MagicTextEditor : Editor
                 {
                     EditorGUILayout.PropertyField(_italicFactor);
                 }
-
+                else if(_ctrl.layout == MagicText.Layout.Perspective)
+                {
+                    EditorGUILayout.PropertyField(_perspectiveFactor);
+                    EditorGUILayout.PropertyField(_strethFactor);
+                }
             }
         }
     }

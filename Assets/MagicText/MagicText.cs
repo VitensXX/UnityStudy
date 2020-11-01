@@ -33,6 +33,7 @@ public class MagicText : BaseMeshEffect
         Normal, //原始的
         Circle, //圆形
         Italic, //斜体
+        Perspective, //透视
     }
 
     public enum Type
@@ -83,11 +84,16 @@ public class MagicText : BaseMeshEffect
     public Layout layout = Layout.Normal;
     public float radius = 200;
     public float angle = 10;
-    public Vector2 italicFactor;
+    public float italicFactor = 0;
+    public Vector2 perspectiveFactor = Vector2.zero;
+    public float strethFactor = 0;
 
     Layout _lastLayout;
     float _radius;
     float _angle;
+    float _italicFactor;
+    Vector2 _perspectiveFactor;
+    float _strethFactor;
 
     Vector3 _circleCenter;
     Vector3 _textCenter;
@@ -470,6 +476,9 @@ public class MagicText : BaseMeshEffect
         _lastLayout = layout;
         _angle = angle;
         _radius = radius;
+        _italicFactor = italicFactor;
+        _perspectiveFactor = perspectiveFactor;
+        _strethFactor = strethFactor;
         _forceFadeout = forceFadeoutDelay_3;
     }
 
@@ -525,7 +534,9 @@ public class MagicText : BaseMeshEffect
         }
 
         //Relayout校验
-        if (_angle != angle || _radius != radius || _lastLayout != layout)
+        if (_angle != angle || _radius != radius || _lastLayout != layout || 
+            _italicFactor != italicFactor || _perspectiveFactor != perspectiveFactor 
+            || _strethFactor != strethFactor)
         {
             SetParam();
             Relayout();
@@ -754,7 +765,6 @@ public class MagicText : BaseMeshEffect
     //刷新布局
     void RefreshLayout(VertexHelper helper, ref UIVertex v)
     {
-        //Debug.LogError("refreshLayout");
         //圆形布局,重新计算顶点位置信息
         if (layout == Layout.Circle)
         {
@@ -798,6 +808,24 @@ public class MagicText : BaseMeshEffect
                 }
                 helper.PopulateUIVertex(ref v, i);
                 Italic(helper, ref v, i);
+                helper.SetUIVertex(v, i);
+            }
+            RecordAfterLayout(helper, ref v);
+        }
+        else if(layout == Layout.Perspective)
+        {
+            ClearPosRecord();
+            RecordVerticesInfo(helper, ref v);
+
+            //重新计算每个顶点的布局
+            for (int i = 0; i < _verticesCountWithTag; i++)
+            {
+                if (!IsValidVertice(i))
+                {
+                    continue;
+                }
+                helper.PopulateUIVertex(ref v, i);
+                Perspective(helper, ref v, i);
                 helper.SetUIVertex(v, i);
             }
             RecordAfterLayout(helper, ref v);
@@ -860,6 +888,7 @@ public class MagicText : BaseMeshEffect
     //在布局后重新记录顶点信息
     void RecordAfterLayout(VertexHelper helper, ref UIVertex v)
     {
+        Debug.LogError("RefreshLayout ");
         _verticesOriPos.Clear();
         for (int i = 0; i < _verticesCountWithTag; i++)
         {
@@ -1079,7 +1108,8 @@ public class MagicText : BaseMeshEffect
     {
         int lastNoTagVertIndex = GetLastNoTagVertIndex();
         //动画最后一个顶点的索引 拉伸每四个顶点只有前两个顶点在表现
-        int endVerticIndex = _curType == Type.Stretch ? lastNoTagVertIndex - 3 : lastNoTagVertIndex - 1;
+        //int endVerticIndex = _curType == Type.Stretch ? lastNoTagVertIndex - 3 : lastNoTagVertIndex - 1;
+        int endVerticIndex = lastNoTagVertIndex - 1;
         endVerticIndex = endVerticIndex - (_tagOffset[endVerticIndex >> 2] << 2);
 
         return endVerticIndex;
@@ -1113,6 +1143,7 @@ public class MagicText : BaseMeshEffect
 
     #region 效果执行函数
 
+    Vector3 _defaultYDir = new Vector3(0, 1, 0);
     //跳跃效果
     void Jump(VertexHelper helper, ref UIVertex v, int i)
     {
@@ -1122,14 +1153,16 @@ public class MagicText : BaseMeshEffect
             return;
         }
         
-        //圆形布局需要计算方向
-        if(layout == Layout.Circle)
+        
+        if(layout == Layout.Normal || layout== Layout.Italic)
         {
-            v.position = _verticesOriPos[i] + SampleFromAnimCurve(i) * _animFactor * _verticleYDir[i];
+            //v.position.y = _verticesOriPos[i].y + SampleFromAnimCurve(i) * _animFactor;
+            v.position = _verticesOriPos[i] + SampleFromAnimCurve(i) * _animFactor * _defaultYDir;
         }
+        //圆形布局需要计算方向
         else
         {
-            v.position.y = _verticesOriPos[i].y + SampleFromAnimCurve(i) * _animFactor;
+            v.position = _verticesOriPos[i] + SampleFromAnimCurve(i) * _animFactor * _verticleYDir[i];
         }
 
         ProcessOffset(ref v, i);
@@ -1138,10 +1171,25 @@ public class MagicText : BaseMeshEffect
     //stretch
     void Stretch(VertexHelper helper, ref UIVertex v, int i)
     {
+        float y = SampleFromAnimCurve(i);
+        if (!IsValide(y))
+        {
+            return;
+        }
         if (i % 4 == 0 || i % 4 == 1)
         {
-            Jump(helper, ref v, i);
+            if (layout == Layout.Normal)
+            {
+                v.position = _verticesOriPos[i] + SampleFromAnimCurve(i) * _animFactor * _defaultYDir;
+            }
+            //圆形布局需要计算方向
+            else
+            {
+                v.position = _verticesOriPos[i] + SampleFromAnimCurve(i) * _animFactor * _verticleYDir[i];
+            }
         }
+
+        ProcessOffset(ref v, i);
     }
 
     void Scale(VertexHelper helper, ref UIVertex v, int i)
@@ -1234,6 +1282,36 @@ public class MagicText : BaseMeshEffect
         ProcessOffset(ref v, i);
     }
 
+
+    Color _originColor;
+    void ChangeColor(VertexHelper helper, ref UIVertex v, int i)
+    {
+        float y = SampleFromAnimCurve(i);
+        if (!IsValide(y))
+        {
+            return;
+        }
+        byte curAlpah = v.color.a;
+        v.color = Color32.Lerp(_originColor, _textColor, y);
+        v.color.a = curAlpah;
+        v.position = _verticesOriPos[i];
+    }
+
+
+    //处理偏移
+    void ProcessOffset(ref UIVertex v, int i)
+    {
+        if (_openPosOffset)
+        {
+            Vector2 posOffset = SampleOffset(i);
+            v.position.x += posOffset.x;
+            v.position.y += posOffset.y;
+        }
+    }
+    #endregion
+
+    #region 布局
+
     void CircleLayout(VertexHelper helper, ref UIVertex v, int i)
     {
         float curAngle = 0;
@@ -1249,7 +1327,7 @@ public class MagicText : BaseMeshEffect
             }
             else
             {
-                curAngle =  -(curTextIndex - _verticesCount / 8) * _angle - _angle / 2;
+                curAngle = -(curTextIndex - _verticesCount / 8) * _angle - _angle / 2;
             }
         }
         else
@@ -1278,13 +1356,13 @@ public class MagicText : BaseMeshEffect
     {
         if (i % 4 == 0)
         {
-            v.position.x += italicFactor.x;
+            v.position.x += _italicFactor;
             //v.position.x += (_verticesCountWithTag - (i - 0.5f))/ _verticesCountWithTag * italicFactor.x;
             //v.position.x -= (0.5f - i)/ _verticesCountWithTag * italicFactor.y;
         }
-        else if(i % 4 == 1)
+        else if (i % 4 == 1)
         {
-            v.position.x += italicFactor.x;
+            v.position.x += _italicFactor;
             //v.position.x += (_verticesCountWithTag - (i + 0.5f)) / _verticesCountWithTag * italicFactor.x;
             //v.position.x -= (- 0.5f - i) / _verticesCountWithTag * italicFactor.y;
         }
@@ -1294,31 +1372,98 @@ public class MagicText : BaseMeshEffect
         }
     }
 
-    Color _originColor;
-    void ChangeColor(VertexHelper helper, ref UIVertex v, int i)
+    float CalcCurPerspectiveFactor(int i, float factor)
     {
-        float y = SampleFromAnimCurve(i);
-        if (!IsValide(y))
+        float curFactaor = 0;
+        if (_verticesCount / 4 % 2 == 0)
         {
-            return;
+            curFactaor = (_verticesCount / 8 - i) * factor;
+            if (i < _verticesCount / 8)
+            {
+                curFactaor = (_verticesCount / 8 - i - 1) * factor + factor / 2;
+            }
+            else
+            {
+                curFactaor = -(i - _verticesCount / 8) * factor - factor / 2;
+            }
         }
-        byte curAlpah = v.color.a;
-        v.color = Color32.Lerp(_originColor, _textColor, y);
-        v.color.a = curAlpah;
-        v.position = _verticesOriPos[i];
+        else
+        {
+            curFactaor = (_verticesCount / 8 - i) * factor;
+        }
+
+        return curFactaor;
     }
 
-
-    //处理偏移
-    void ProcessOffset(ref UIVertex v, int i)
+    void Perspective(VertexHelper helper, ref UIVertex v, int i)
     {
-        if (_openPosOffset)
+        int curTextIndex = IndexOffsetByTag(i) >> 2;
+        //float xFactor = CalcCurPerspectiveFactor(curTextIndex, _perspectiveFactor.x);
+        float yFactor = CalcCurPerspectiveFactor(curTextIndex, _perspectiveFactor.y);
+
+        //float curOff = 0;
+        //if (_verticesCount / 4 % 2 == 0)
+        //{
+        //    curOff = (_verticesCount / 8 - curTextIndex) * _perspectiveFactor;
+        //    if (curTextIndex < _verticesCount / 8)
+        //    {
+        //        curOff = (_verticesCount / 8 - curTextIndex - 1) * _perspectiveFactor + _perspectiveFactor / 2;
+        //    }
+        //    else
+        //    {
+        //        curOff = -(curTextIndex - _verticesCount / 8) * _perspectiveFactor - _perspectiveFactor / 2;
+        //    }
+        //}
+        //else
+        //{
+        //    curOff = (_verticesCount / 8 - curTextIndex) * _perspectiveFactor;
+        //}
+
+        if (i % 4 == 0 || i % 4 == 1)
         {
-            Vector2 posOffset = SampleOffset(i);
-            v.position.x += posOffset.x;
-            v.position.y += posOffset.y;
+
+            //if (layout == Layout.Normal)
+            //{
+            v.position.y += _strethFactor;
+            v.position.x += yFactor;
+
+            //}
+            ////圆形布局需要计算方向
+            //else
+            //{
+            //    v.position = _verticesOriPos[i] + SampleFromAnimCurve(i) * _animFactor * _verticleYDir[i];
+            //}
         }
+        else if(i % 4 == 2)
+        {
+            //v.position.y += _strethFactor;
+            v.position.x += _perspectiveFactor.x;
+            //v.position.x += curOff;
+
+            //v.position.y += _verticesOriPos[i] + SampleFromAnimCurve(i) * _animFactor * _defaultYDir;
+        }
+        else
+        {
+            v.position.x -= _perspectiveFactor.x;
+        }
+        //if (i % 4 == 0)
+        //{
+            
+        //    //v.position.x += (_verticesCountWithTag - (i - 0.5f))/ _verticesCountWithTag * italicFactor.x;
+        //    //v.position.x -= (0.5f - i)/ _verticesCountWithTag * italicFactor.y;
+        //}
+        //else if (i % 4 == 1)
+        //{
+        //    v.position.x += curOff;
+        //    //v.position.x += (_verticesCountWithTag - (i + 0.5f)) / _verticesCountWithTag * italicFactor.x;
+        //    //v.position.x -= (- 0.5f - i) / _verticesCountWithTag * italicFactor.y;
+        //}
+        //else
+        //{
+            //v.position = _verticesOriPos[i];
+        //} 
     }
+
     #endregion
 
     #endregion
