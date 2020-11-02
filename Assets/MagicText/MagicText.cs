@@ -888,7 +888,7 @@ public class MagicText : BaseMeshEffect
     //在布局后重新记录顶点信息
     void RecordAfterLayout(VertexHelper helper, ref UIVertex v)
     {
-        Debug.LogError("RefreshLayout ");
+        //Debug.LogError("RefreshLayout ");
         _verticesOriPos.Clear();
         for (int i = 0; i < _verticesCountWithTag; i++)
         {
@@ -1110,7 +1110,10 @@ public class MagicText : BaseMeshEffect
         //动画最后一个顶点的索引 拉伸每四个顶点只有前两个顶点在表现
         //int endVerticIndex = _curType == Type.Stretch ? lastNoTagVertIndex - 3 : lastNoTagVertIndex - 1;
         int endVerticIndex = lastNoTagVertIndex - 1;
-        endVerticIndex = endVerticIndex - (_tagOffset[endVerticIndex >> 2] << 2);
+        if (_text.supportRichText)
+        {
+            endVerticIndex = endVerticIndex - (_tagOffset[endVerticIndex >> 2] << 2);
+        }
 
         return endVerticIndex;
     }
