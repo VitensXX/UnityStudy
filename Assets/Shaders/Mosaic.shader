@@ -5,7 +5,7 @@ Shader "Vitens/Mosaic"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-		_Degree("Degree", float) = 1
+		_Factor("Degree", range(0.0001,0.2)) = 0.05
     }
     SubShader
     {
@@ -33,7 +33,7 @@ Shader "Vitens/Mosaic"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-			fixed _Degree;
+			fixed _Factor;
 
             v2f vert (appdata v)
             {
@@ -43,16 +43,12 @@ Shader "Vitens/Mosaic"
                 return o;
             }
 
-            fixed4 frag (v2f i, fixed facing : VFACE) : SV_Target
+            fixed4 frag (v2f i) : SV_Target
             {
-				i.uv.x = round(i.uv.x / _Degree) * _Degree;
-				i.uv.y = round(i.uv.y / _Degree) * _Degree;
-				fixed4 col = tex2D(_MainTex, i.uv);
-
-				if (facing > 0)
-					col *= fixed4(1, 0, 0, 1);
-
-				return col;
+				//round(x) 四舍五入, 为了让周围的像素取中心点的颜色值. _Factor范围大小的参数,表现上就是马赛克色块的大小
+				i.uv.x = round(i.uv.x / _Factor) * _Factor;
+				i.uv.y = round(i.uv.y / _Factor) * _Factor;
+				return tex2D(_MainTex, i.uv);
             }
             ENDCG
         }
