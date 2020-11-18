@@ -40,14 +40,13 @@ public class MeshDebug : MonoBehaviour
             Vector3 normal = normals[i] + transform.position;
             normal = Rotate(normal, transform.eulerAngles);
 
-
             Debug.DrawRay(worldPos, normal, Color.green);
 
 
-            if(i == 0)
-            {
-                test.position = worldPos;
-            }
+            //if(i == 0)
+            //{
+            //    test.position = worldPos;
+            //}
         }
 
     }

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: hero_yuji
-  m_Shader: {fileID: 4800000, guid: e7ed28d9665b9cf4cb1c5333ca5dbc8f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1cf4e17ad18c76041b1af68bc5a371eb, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
