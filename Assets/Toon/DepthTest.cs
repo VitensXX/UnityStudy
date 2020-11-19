@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class DepthTest : MonoBehaviour
 {
-    //private Material postEffectMat = null;
+    private Material postEffectMat = null;
     private Camera currentCamera = null;
 
     void Awake()
@@ -15,25 +15,25 @@ public class DepthTest : MonoBehaviour
 
     void OnEnable()
     {
-        //if (postEffectMat == null)
-        //    postEffectMat = new Material(Shader.Find("Unlit/OutlineLight"));
+        if (postEffectMat == null)
+            postEffectMat = new Material(Shader.Find("Unlit/OutlineLight"));
         currentCamera.depthTextureMode = DepthTextureMode.Depth;
     }
 
     void OnDisable()
     {
-        //currentCamera.depthTextureMode &= ~DepthTextureMode.Depth;
+        currentCamera.depthTextureMode &= ~DepthTextureMode.Depth;
     }
 
-    //void OnRenderImage(RenderTexture source, RenderTexture destination)
-    //{
-    //    if (postEffectMat == null)
-    //    {
-    //        Graphics.Blit(source, destination);
-    //    }
-    //    else
-    //    {
-    //        Graphics.Blit(source, destination, postEffectMat);
-    //    }
-    //}
+    void OnRenderImage(RenderTexture source, RenderTexture destination)
+    {
+        if (postEffectMat == null)
+        {
+            Graphics.Blit(source, destination);
+        }
+        else
+        {
+            Graphics.Blit(source, destination, postEffectMat);
+        }
+    }
 }

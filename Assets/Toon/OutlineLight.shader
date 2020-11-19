@@ -36,6 +36,7 @@
                 float2 uv : TEXCOORD0;
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
+				float4 scrPos:TEXCOORD1;
             };
 
             sampler2D _MainTex;
@@ -48,6 +49,8 @@
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
+
+				o.scrPos = ComputeScreenPos(o.vertex);
                 return o;
             }
 
@@ -76,6 +79,11 @@
 				float linear01Depth = Linear01Depth(depth);
 				return linear01Depth;
 			}
+
+			//	float4 frag(v2f i) :COLOR{
+   //float depthValue = 1 - Linear01Depth(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.scrPos)).r);
+   //return float4(depthValue, depthValue, depthValue, 1.0f);
+			//}
 
             ENDCG
         }
