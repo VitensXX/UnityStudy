@@ -1,11 +1,12 @@
 ﻿
-//马赛克
+//马赛克 圆形
 Shader "Vitens/Mosaic Circle"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
 		_Factor("Factor", range(0.0001,0.2)) = 0.05
+		_R("radius", range(0, 0.2)) = 0.1
     }
     SubShader
     {
@@ -38,6 +39,7 @@ Shader "Vitens/Mosaic Circle"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 			fixed _Factor;
+			fixed _R;
 
             v2f vert (appdata v)
             {
@@ -49,12 +51,36 @@ Shader "Vitens/Mosaic Circle"
 
             fixed4 frag (v2f i) : SV_Target
             {
-				//round(x) 四舍五入, 为了让周围的像素取中心点的颜色值. _Factor范围大小的参数,表现上就是马赛克色块的大小
-				//i.uv.x = round(i.uv.x / _Factor) * _Factor;
-				//i.uv.y = round(i.uv.y / _Factor) * _Factor;
-                //_Factor / 2 的偏移操作是为了保证从左下角开始的小方块都是平均大小
-				i.uv.x = round((i.uv.x + _Factor / 2) / _Factor) * _Factor  - _Factor / 2;
-				i.uv.y = round((i.uv.y  + _Factor / 2)/ _Factor) * _Factor - _Factor / 2;
+				/*int t = (i.uv.x) / _Factor;
+				float2 center = round((i.uv + _Factor / 2) / _Factor) * _Factor - _Factor / 2;
+				if (t % 2 == 0) 
+				{
+					if (i.uv.y > center.y) {
+						center.y += _Factor / 2;
+					}
+					else {
+						center.y -= _Factor / 2;
+					}
+					if (distance(center, i.uv) < _R)
+					{
+						i.uv = center;
+					}
+				}
+				else {
+					if (distance(center, i.uv) < _R)
+					{
+						i.uv = center;
+					}
+				}*/
+
+
+
+				float2 center = round((i.uv + _Factor / 2) / _Factor) * _Factor - _Factor / 2;
+				if (distance(center, i.uv) < _R) 
+				{
+					i.uv = center;
+				}
+
 				return tex2D(_MainTex, i.uv);
             }
             ENDCG
