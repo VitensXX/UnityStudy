@@ -49,9 +49,10 @@ Shader "Vitens/Mosaic Circle"
                 return o;
             }
 
+			//可错开的圆形
             fixed4 frag (v2f i) : SV_Target
             {
-				/*int t = (i.uv.x) / _Factor;
+				int t = (i.uv.x) / _Factor;
 				float2 center = round((i.uv + _Factor / 2) / _Factor) * _Factor - _Factor / 2;
 				if (t % 2 == 0) 
 				{
@@ -61,28 +62,28 @@ Shader "Vitens/Mosaic Circle"
 					else {
 						center.y -= _Factor / 2;
 					}
-					if (distance(center, i.uv) < _R)
-					{
-						i.uv = center;
-					}
 				}
-				else {
-					if (distance(center, i.uv) < _R)
-					{
-						i.uv = center;
-					}
-				}*/
+				
+				if (distance(center, i.uv) < _R)
+				{
+					i.uv = center;
+				}
 
 
+				return tex2D(_MainTex, i.uv);
+            }
 
+			//圆形
+			/*fixed4 frag(v2f i) : SV_Target
+			{
 				float2 center = round((i.uv + _Factor / 2) / _Factor) * _Factor - _Factor / 2;
-				if (distance(center, i.uv) < _R) 
+				if (distance(center, i.uv) < _R)
 				{
 					i.uv = center;
 				}
 
 				return tex2D(_MainTex, i.uv);
-            }
+			}*/
             ENDCG
         }
     }
