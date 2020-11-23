@@ -64,7 +64,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _Factor: 1.42
-    - _Feather: 0.08
+    - _Feather: 0.038
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
