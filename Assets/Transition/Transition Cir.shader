@@ -6,10 +6,6 @@ Shader "Vitens/Transition Cir"
 		_Color("Color", color) = (0,0,0,1)
 		_Factor("Factor", range(-1,1.42)) = 0
 		_Feather("Feather", range(0,0.3)) = 0
-		//_CenterX("CenterX", float) = 0.5
-		//_CenterY("CenterY", float) = 0.5
-		//Max
-		//_Scale("Max Screen Size", float) = 1000
 	}
 	SubShader
 	{

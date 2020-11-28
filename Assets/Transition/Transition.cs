@@ -6,51 +6,94 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class Transition : MonoBehaviour
 {
-    //public Camera cam;
     public Graphic target;
     public bool UnscaledTime;
+    public float duration = 1;
+    public float feather = 0.02f;
 
-    public bool play;
-    public bool hide;
+    public bool playIn;
+    public bool playOut;
 
-    const float MaxFactor = 1.42f;
-    const float MinFactor = -.58f;
+    const float MaxFactor = 1;// 1.42f;
+    const float MinFactor = 0;//-.58f;
 
     Material _mat;
     float _tick;
     bool _playing = false;
+    bool _in = false;
+    float _speed = 1;
     // Start is called before the first frame update
     void Start()
     {
     }
 
-    public void Play()
+    //播放出场效果 视野从聚焦出变小
+    public void PlayOut()
     {
-        play = true;
-        _tick = 0;
+        Prepare();
+        _in = false;
+        _tick = MaxFactor;
+    }
+
+    //播放入场效果 视野从聚焦处变大
+    public void PlayIn()
+    {
+        Prepare();
+        _in = true;
+        _tick = MinFactor - feather;
+    }
+
+    void Prepare()
+    {
+        if (!_mat)
+        {
+            _mat = GetComponent<RawImage>().material;
+        }
+
+        _speed = duration == 0 ? 1 : 1 / duration;
+       
         _playing = true;
         Vector2 screenPos = GetUIScreenPosition(target);
-        _mat = GetComponent<RawImage>().material;
         _mat.SetVector("_CenterAndScreenSize", new Vector4(screenPos.x, screenPos.y, Screen.width, Screen.height));
+        _mat.SetFloat("_Feather", feather);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (play)
+        if (playIn)
         {
-            Play();
-            play = false;
+            PlayIn();
+            playIn = false;
+        }
+
+        if (playOut)
+        {
+            PlayOut();
+            playOut = false;
         }
 
         if (_playing)
         {
-            _tick += UnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime;
-            if (_tick > MaxFactor)
+            if (_in)
             {
-                _tick = MaxFactor;
-                _playing = false;
+                _tick += (UnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * _speed;
+                if (_tick > MaxFactor)
+                {
+                    _tick = MaxFactor;
+                    _playing = false;
+                }
             }
+            else
+            {
+                _tick -= (UnscaledTime ? Time.unscaledDeltaTime : Time.deltaTime) * _speed;
+                if (_tick < MinFactor - feather)
+                {
+                    _tick = MinFactor - feather;
+                    _playing = false;
+                }
+            }
+
             _mat.SetFloat("_Factor", _tick);
         }
     }
