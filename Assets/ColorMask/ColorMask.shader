@@ -10,8 +10,8 @@
 
         Pass
         {
-			//Blend SrcAlpha One
-			ColorMask RGB
+			Blend SrcAlpha One
+			ColorMask G
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -48,7 +48,7 @@
             fixed4 frag (v2f i) : SV_Target
             {
                 //return 1;
-                return fixed4(1,1,1,1);
+                return fixed4(1,1,0,1);
             }
             ENDCG
         }
