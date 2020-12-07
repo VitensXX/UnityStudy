@@ -6,12 +6,14 @@
     }
     SubShader
     {
-	   Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" "PreviewType" = "Plane" }
+	   Tags { "Queue" = "Geometry" "IgnoreProjector" = "True" "RenderType" = "Transparent" "PreviewType" = "Plane" }
 
         Pass
         {
-			Blend SrcAlpha One
-			ColorMask G
+
+			//Blend SrcAlpha One
+			//ColorMask R
+            ZWrite off
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
