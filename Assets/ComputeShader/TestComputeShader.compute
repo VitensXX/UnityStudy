@@ -1,0 +1,27 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+//RWTexture2D<float4> Result;
+
+//struct col
+//{
+//    float r;
+//    float g;
+//    float b;
+//}
+
+StructuredBuffer<float3> inDatas;
+RWStructuredBuffer<float3> outDatas;
+
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    // TODO: insert actual code here!
+
+    //Result[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
+    float gray = dot(inDatas[id.x], float3(0.299, 0.587, 0.114));
+    outDatas[id.x] = float3(gray,gray,gray);
+}
