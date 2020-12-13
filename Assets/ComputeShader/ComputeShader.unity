@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cs: {fileID: 7200000, guid: 89b972eaeeccd154f8ba0f05221664f2, type: 3}
+  cs2: {fileID: 7200000, guid: 5d8a51b1871fe4b479bf8b4e20326539, type: 3}
   img: {fileID: 1069440853}
   tex: {fileID: 2800000, guid: 46dc5c969bbb8f644976b5099955a958, type: 3}
   size: {x: 2048, y: 1152}
