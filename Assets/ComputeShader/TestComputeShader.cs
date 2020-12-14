@@ -14,47 +14,47 @@ public class TestComputeShader : MonoBehaviour
     public Vector2Int size = new Vector2Int(1024, 1024);
     Color[] colors;
     // Start is called before the first frame update
-    void Start()
-    {
-        Stopwatch watch = Stopwatch.StartNew();
-        watch.Restart();
-        //Texture_GPU
-        //Texture tex = new Texture();
-        colors = tex.GetPixels();
-        watch.Stop();
-        print("GetPixels:" + watch.ElapsedMilliseconds);
-        watch.Restart();
-
-        ToCumputeShader();
-
-        Texture2D tempTex = new Texture2D(size.x, size.y, TextureFormat.ARGB32, false);
-        for (int y = 0; y < size.y; y++)
-        {
-            for (int x = 0; x < size.x; x++)
-            {
-                //Color col = colors[y * size.x + x];
-                //float gray = col.r * 0.299f + col.g * 0.587f + col.b * 0.114f;
-                //tempTex.SetPixel(x, y, new Color(gray, gray, gray));
-
-                tempTex.SetPixel(x, y, colors[y * size.x + x]);
-            }
-        }
-
-        watch.Stop();
-        print("SetPixels:" + watch.ElapsedMilliseconds);
-        watch.Restart();
-        tempTex.Apply();
-        watch.Stop();
-        print("Apply:" + watch.ElapsedMilliseconds);
-        img.texture = tempTex;
-    }
-
     //void Start()
     //{
-    //    ToCS2();
+    //    Stopwatch watch = Stopwatch.StartNew();
+    //    watch.Restart();
+    //    //Texture_GPU
+    //    //Texture tex = new Texture();
+    //    colors = tex.GetPixels();
+    //    watch.Stop();
+    //    print("GetPixels:" + watch.ElapsedMilliseconds);
+    //    watch.Restart();
 
-    //    //img.texture = tex;
+    //    ToCumputeShader();
+
+    //    Texture2D tempTex = new Texture2D(size.x, size.y, TextureFormat.ARGB32, false);
+    //    for (int y = 0; y < size.y; y++)
+    //    {
+    //        for (int x = 0; x < size.x; x++)
+    //        {
+    //            //Color col = colors[y * size.x + x];
+    //            //float gray = col.r * 0.299f + col.g * 0.587f + col.b * 0.114f;
+    //            //tempTex.SetPixel(x, y, new Color(gray, gray, gray));
+
+    //            tempTex.SetPixel(x, y, colors[y * size.x + x]);
+    //        }
+    //    }
+
+    //    watch.Stop();
+    //    print("SetPixels:" + watch.ElapsedMilliseconds);
+    //    watch.Restart();
+    //    tempTex.Apply();
+    //    watch.Stop();
+    //    print("Apply:" + watch.ElapsedMilliseconds);
+    //    img.texture = tempTex;
     //}
+
+    void Start()
+    {
+        ToCS2();
+
+        //img.texture = tex;
+    }
 
     // Update is called once per frame
     void Update()
@@ -78,15 +78,28 @@ public class TestComputeShader : MonoBehaviour
 
     void ToCS2()
     {
-        RenderTexture rt = new RenderTexture(256,256,24);
+        RenderTexture rt = new RenderTexture(8,8,0);
         rt.enableRandomWrite = true;
         rt.Create();
+
+
+        ComputeBuffer outBuffer = new ComputeBuffer(8 * 8 * 4, sizeof(float));
 
         //Texture2D tex = new Texture2D()
         int kernel = cs.FindKernel("CSMain");
         cs2.SetTexture(kernel, "Result", rt);
-        //cs2.Dispatch(kernel, 256 / 8, 256/8, 1);
-        cs2.Dispatch(kernel, 256 / 8, 256 / 8, 1);
+        cs2.SetBuffer(kernel, "outDatas", outBuffer);
+        cs2.Dispatch(kernel, 8/8, 8, 1);
         img.texture = rt;
+
+        float[] datas = new float[8 * 8];
+        print(outBuffer.stride);
+        outBuffer.GetData(datas);
+
+        print(datas.Length);
+        for (int i = 0; i < datas.Length; i++)
+        {
+            print(datas[i]);
+        }
     }
 }
