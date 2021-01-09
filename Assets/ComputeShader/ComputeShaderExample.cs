@@ -48,9 +48,8 @@ public class ComputeShaderExample : MonoBehaviour
     {
         //一个元素的长度（bytes)
         int stride = sizeof(int);
-        //Debug.LogError(stride);
         //创建一个buffer，大小为16个元素
-        ComputeBuffer outputBuffer = new ComputeBuffer(64 * stride, stride);
+        ComputeBuffer outputBuffer = new ComputeBuffer(16 * stride, stride);
         //找到kernel
         int kernel = cs.FindKernel("CSMain");
         cs.SetBuffer(kernel, "outputDatas", outputBuffer);
