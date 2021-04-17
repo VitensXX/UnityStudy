@@ -70,4 +70,9 @@ public class MeshDebug : MonoBehaviour
         rotatedPos.y = -pos.x * Mathf.Sin(rz) + pos.y * Mathf.Cos(rz);
         return rotatedPos;
     }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, 3);
+    }
 }
