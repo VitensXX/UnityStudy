@@ -47,7 +47,9 @@ public class DrawOnExcel : MonoBehaviour
         }
         // 将字节保存成图片，这个路径只能在PC端对图片进行读写操作
         File.WriteAllBytes(Application.dataPath + "/RawArt/test.png", bytes);
+        #if UNITY_EDITOR
         UnityEditor.AssetDatabase.Refresh();
+        #endif
     }
 
     [ContextMenu("test")]
