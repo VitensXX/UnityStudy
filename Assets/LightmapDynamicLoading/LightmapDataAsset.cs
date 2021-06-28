@@ -5,10 +5,9 @@ using UnityEngine;
 // 存储烘焙后的信息 存在Json中比较靠谱
 // 1.烘焙后生成的光照贴图（存路径或索引就行）
 // 2.每个Renderer上的参数，因为没有建立太好的对应关系，所以临时就通过GetComponentsInChildren方式获得的Renderer[]的默认索引顺序存储
-[CreateAssetMenu(menuName = "ScriptableObjects/CreateCubeScriptableObject")]
 public class LightmapDataAsset : ScriptableObject
 {
-    public const string ASSET_PATH = @"Assets/LightmapDynamicLoading/prefabName.asset";
+    public const string ASSET_PATH = @"Assets/Resources/LightmapDynamicLoading/prefabName.asset";
 
     public Texture2D[] texLightmapLight;
     public Texture2D[] texLightmapDir;
