@@ -5625,7 +5625,7 @@ ParticleSystem:
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
-    m_Texture: {fileID: 2800000, guid: 7a530637768952a40860d744d8f0aed2, type: 3}
+    m_Texture: {fileID: 2800000, guid: e6b941ed49abf704d9c88a3beb9b137c, type: 3}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
     m_TextureUVChannel: 0
@@ -5865,7 +5865,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 1000
+        scalar: 10000
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -24808,7 +24808,7 @@ ParticleSystem:
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
-    m_Texture: {fileID: 2800000, guid: 7a530637768952a40860d744d8f0aed2, type: 3}
+    m_Texture: {fileID: 2800000, guid: e6b941ed49abf704d9c88a3beb9b137c, type: 3}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
     m_TextureUVChannel: 0
@@ -33543,6 +33543,7 @@ GameObject:
   - component: {fileID: 1681494455}
   - component: {fileID: 1681494454}
   - component: {fileID: 1681494453}
+  - component: {fileID: 1681494456}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -38231,6 +38232,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &1681494456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681494452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a360a49305a8c5e478afc11dada8d1d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTime: 2
+  simulationSpeedScale: 1
 --- !u!1 &1770918772
 GameObject:
   m_ObjectHideFlags: 0
@@ -39028,7 +39043,7 @@ ParticleSystem:
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
     alignToDirection: 0
-    m_Texture: {fileID: 2800000, guid: 7a530637768952a40860d744d8f0aed2, type: 3}
+    m_Texture: {fileID: 2800000, guid: e6b941ed49abf704d9c88a3beb9b137c, type: 3}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
     m_TextureUVChannel: 0
