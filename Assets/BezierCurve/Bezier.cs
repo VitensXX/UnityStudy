@@ -7,7 +7,7 @@ public class Bezier : MonoBehaviour
 {
     public Slider slider;
     public GameObject Ball;
-    public LineRenderer lineRenderer;
+    public LineRenderer lineRenderer; 
 
     Vector3 A = new Vector3(-10, 10, 0);
     Vector3 B = new Vector3(0, 0, 0);
