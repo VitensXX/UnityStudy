@@ -17,8 +17,6 @@ public class MeshDebug : MonoBehaviour
     void Start()
     {
         _mesh = GetComponent<MeshFilter>().mesh;
-
-       
     }
 
     void Update()
