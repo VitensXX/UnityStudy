@@ -13,7 +13,7 @@ using Vitens.UnitEditor;
 /// </summary>
 public class CreateScriptWindow : EditorWindow
 {
-    const string TEMPLATE_PATH = "Assets/Platform/Editor/MyTemplateScript.txt";//模板路径
+    const string TEMPLATE_PATH = "Assets/Editor/MyTemplateScript.txt";//模板路径
 
     [MenuItem("Tools/Create Script")]
     static void Create()
