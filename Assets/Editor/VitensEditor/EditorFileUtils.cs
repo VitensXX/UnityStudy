@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using System.IO;
 
 /// <summary>
@@ -31,6 +32,11 @@ namespace Vitens.Editor
             }
             Debug.Log("open: "+path); 
             System.Diagnostics.Process.Start("explorer.exe", path);
+        }
+
+        //打开脚本
+        public static void OpenScripts(string assetPath, int line){
+            AssetDatabase.OpenAsset(AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(assetPath), line);
         }
 
         //通过路径获取文件名

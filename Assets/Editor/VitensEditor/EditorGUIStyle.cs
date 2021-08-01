@@ -10,9 +10,18 @@ using UnityEngine;
 /// </summary>
 public class EditorGUIStyle
 {
-    public static GUIStyle searchField = "SearchTextField";
-    public static GUIStyle searchFieldCancelButton = "SearchCancelButton";
-    public static GUIStyle searchFieldCancelButtonEmpty = "SearchCancelButtonEmpty";
-    public static GUIStyle olEntryBackEven = "OL EntryBackEven";
-    public static GUIStyle olEntryBackOdd = "OL EntryBackOdd";
+    public static GUIStyle Box = "box";
+    public static GUIStyle SearchTextField = "SearchTextField";
+    public static GUIStyle SearchCancelButton = "SearchCancelButton";
+    public static GUIStyle SearchCancelButtonEmpty = "SearchCancelButtonEmpty";
+    public static GUIStyle OL_EntryBackEven = "OL EntryBackEven";
+    public static GUIStyle OL_EntryBackOdd = "OL EntryBackOdd";
+    public static GUIStyle OL_Pluse = "OL Plus";
+    public static GUIStyle OL_Minus = "OL Minus";
+    public static GUIStyle CNStatusInfo = "CN StatusInfo";
+    public static GUIStyle CNStatusWarn = "CN StatusWarn";
+    public static GUIStyle CNStatusError = "CN StatusError";
+    public static GUIStyle AM_HeaderStyle = "AM HeaderStyle";
+    public static GUIStyle AM_MixerHeader = "AM MixerHeader";
+    public static GUIStyle AM_MixerHeader2 = "AM MixerHeader2";
 }

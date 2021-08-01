@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System;
 using System.Text.RegularExpressions;
-using Vitens.UnitEditor;
+using Vitens.Editor;
 
 /// <summary>
 /// Created by Vitens on 2020/7/25 13:14:55
@@ -58,6 +58,8 @@ public class CreateScriptWindow : EditorWindow
                     File.WriteAllText(path, content, Encoding.UTF8);//将修改后的内容写入新的脚本
                     AssetDatabase.Refresh();//马上刷新,方便在Project中直接看到新生成的脚本
                     ShowNotification(new GUIContent("Success!"));
+                    //打开新创建的脚本
+                    EditorFileUtils.OpenScripts(path, 0);
                 }
             }
         }
