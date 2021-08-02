@@ -72,9 +72,11 @@ public class VitensEditorWindow : EditorWindow
         Clear();
     }
 
-    //重新聚焦到自己窗口
+    //重新聚焦到自己窗口 通过聚焦其他窗口模拟丢失焦点的操作 然后再重新聚焦回来
     protected void ReFocus(){
-
+        var consoleWindowType = typeof(EditorWindow).Assembly.GetType("UnityEditor.ConsoleWindow");
+        GetWindow(consoleWindowType).Focus();
+        Focus();
     }
 
     //清除操作
