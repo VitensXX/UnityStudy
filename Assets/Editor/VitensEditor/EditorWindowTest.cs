@@ -123,5 +123,9 @@ string textPast;
         // if(GUILayout.Button("Aa", new GUIStyle("ControlHighlight"), GUILayout.Width(20), GUILayout.Height(20))){
 
         // }
+
+        using(new BoxScope(true)){
+            // editorgu
+        }
     }
 }
