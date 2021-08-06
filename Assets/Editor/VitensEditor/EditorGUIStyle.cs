@@ -26,6 +26,7 @@ public class EditorGUIStyle
     public static GUIStyle AM_HeaderStyle = "AM HeaderStyle";
     public static GUIStyle AM_MixerHeader = "AM MixerHeader";
     public static GUIStyle AM_MixerHeader2 = "AM MixerHeader2";
+    public static GUIStyle RightLabel = "RightLabel";
 }
 
 // public class BoxScope : System.IDisposable
