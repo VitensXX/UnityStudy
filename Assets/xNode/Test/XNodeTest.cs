@@ -12,8 +12,24 @@ public class XNodeTest : MonoBehaviour
         for (int i = 0; i < nodes.Count; i++)
         {
             SimpleNode simpleNode = nodes[i] as SimpleNode;
-            // Debug.LogError(simpleNode.name + " " +simpleNode.GetSum());
-        }
+            // if(simpleNode.GetPort("a").GetInputValue() == null){
+            //     Debug.LogError(simpleNode.GetSum());
+            // }
+            // else{
+            //     simpleNode.a = (int)simpleNode.GetPort("a").GetInputValue();
+            //     Debug.LogError(simpleNode.GetSum());
+            // }
+            // Debug.LogError(simpleNode.GetPort("a").GetInputValue());
+            // simpleNode.a = (int)simpleNode.GetValue(simpleNode.GetPort("sum"));
+            // Debug.LogError(simpleNode.a);
+            // Debug.LogError(simpleNode.name + " " +simpleNode.GetValue(simpleNode.GetPort("a")));
 
+            if(simpleNode.GetNext() != null){
+                Debug.LogError(simpleNode.GetNext().desc);
+            }
+            else{
+                Debug.LogError("No next");
+            }
+        }
     }
 }
