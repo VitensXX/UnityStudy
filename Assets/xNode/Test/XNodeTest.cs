@@ -12,7 +12,7 @@ public class XNodeTest : MonoBehaviour
         for (int i = 0; i < nodes.Count; i++)
         {
             SimpleNode simpleNode = nodes[i] as SimpleNode;
-            // Debug.LogError(simpleNode.name + " " +simpleNode.GetSum());
+            Debug.LogError(simpleNode.name + " " +simpleNode.GetSum());
         }
 
     }
