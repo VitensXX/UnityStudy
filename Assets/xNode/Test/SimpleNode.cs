@@ -13,7 +13,7 @@ public class SimpleNode : Node{
 
     //获取对应端口的值    
     public override object GetValue(NodePort port) {
-        return GetSum();
+        return GetSum(); 
     }
 
     public int GetSum() {
@@ -31,6 +31,6 @@ public class SimpleNode : Node{
     }
 
     public void Play(Action finished){
-        
+        Debug.LogError("test");
     }
 }
