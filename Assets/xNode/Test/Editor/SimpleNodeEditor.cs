@@ -19,9 +19,10 @@ public class SimpleNodeEditor : NodeEditor {
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("b"));
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("desc"));
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("duration"));
-        UnityEditor.EditorGUILayout.LabelField("The value is " + simpleNode.GetSum());
-        // simpleNode.sum = simpleNode.GetSum();
+        UnityEditor.EditorGUILayout.LabelField("The sum value is " + simpleNode.GetSum());
         NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("sum"));
+        UnityEditor.EditorGUILayout.LabelField("The sub value is " + simpleNode.GetSub());
+        NodeEditorGUILayout.PropertyField(serializedObject.FindProperty("sub"));
 
         // Apply property modifications
         serializedObject.ApplyModifiedProperties();

@@ -9,19 +9,39 @@ public class SimpleNode : Node{
     public string desc;
     public float duration;
     [Output] public int sum;
+    [Output] public int sub;
 
 
     //获取对应端口的值    
     public override object GetValue(NodePort port) {
-        return GetSum(); 
+        if(port.fieldName == "sum"){
+            return GetSum();
+        }
+        else{
+            return GetSub();
+        }
     }
 
     public int GetSum() {
         return a + b;
     }
 
-    public SimpleNode GetNext(){
+    public int GetSub(){
+        return a - b;
+    }
+
+    public SimpleNode GetSumNext(){
         NodePort nodePort = GetPort("sum");
+        if(nodePort.Connection == null){
+            return null;
+        }
+        else{
+            return nodePort.Connection.node as SimpleNode;
+        }
+    }
+
+    public SimpleNode GetSubNext(){
+        NodePort nodePort = GetPort("sub");
         if(nodePort.Connection == null){
             return null;
         }
