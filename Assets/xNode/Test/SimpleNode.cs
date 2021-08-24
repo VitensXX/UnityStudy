@@ -51,6 +51,6 @@ public class SimpleNode : Node{
     }
 
     public void Play(Action finished){
-        Debug.LogError("test");
+        Debug.LogError("test"); 
     }
 }
