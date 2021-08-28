@@ -212,5 +212,10 @@ namespace XNodeEditor {
                 windows[i].Repaint();
             }
         }
+
+        //----xNode add by vitens
+        private void Update() {
+            Repaint();
+        }
     }
 }

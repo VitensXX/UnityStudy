@@ -5,13 +5,14 @@ using XNode;
 
 public class ActionNode : BaseNode
 {
-    [Input]public string ActionInput;
+    [Input]public string input;
     public string action;
     public float duration;
-    [Output]public string next;
+    public GameObject timeline;
+    [Output]public string output;
 
     public override BaseNode Next(){
-        NodePort nodePort = GetPort("next");
+        NodePort nodePort = GetPort("output");
         if(nodePort.Connection == null){
             return null;
         }
@@ -20,10 +21,24 @@ public class ActionNode : BaseNode
         }
     }
 
-    public override void Run(System.Action finished)
+    GameObject _test;
+    public override void Start()
     {
         Debug.LogError("播放动作：" + action+"  duration:"+duration);
+        _test = GameObject.Instantiate<GameObject>(timeline);
+        _test.name = action +" "+duration;
+    }
 
-        finished?.Invoke();
+    public override void End()
+    {
+        base.End();
+        GameObject.Destroy(_test);
+    }
+
+
+
+    public override float GetDuration()
+    {
+        return duration;
     }
 }

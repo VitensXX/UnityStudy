@@ -20,10 +20,9 @@ public class FindTargetNode : BaseNode
         }
     }
 
-    public override void Run(System.Action finished)
+    public override void Start()
     {
         Debug.LogError(FindTarget);
-        finished?.Invoke();
     }
 
 }

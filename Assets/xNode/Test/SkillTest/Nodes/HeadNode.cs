@@ -24,10 +24,9 @@ public class HeadNode : BaseNode
         }
     }
 
-    public override void Run(System.Action finished)
+    public override void Start()
     {
         Debug.LogError("head");
-        finished?.Invoke();
     }
 
 }

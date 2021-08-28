@@ -36,10 +36,10 @@ public class BranchNode : BaseNode
         }
     }
 
-    public override void Run(System.Action finished)
+    public override void Start()
     {
         int random = Random.Range(0, 10);
-        Debug.LogError("分支执行，随机:"+random);
         select = random < 5;
+        Debug.LogError("分支执行，随机:"+random + "  select:"+select);
     }
 }
