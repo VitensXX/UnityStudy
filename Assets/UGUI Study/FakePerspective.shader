@@ -4,7 +4,7 @@ Shader "Vitens/FakePerspective"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _Theta ("Theta", range(0,90)) = 0 
+        _Theta ("Theta", range(-90,90)) = 0 
     }
     SubShader
     {
@@ -44,21 +44,15 @@ Shader "Vitens/FakePerspective"
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 col = fixed4(1,1,1,1);
-                if(i.uv.x < 0.5){
-                    
-                    float tanTheta = tan(_Theta / 180 * 3.14);
-                    float a = i.uv.y * tanTheta;
-                    float b = 0.5 - a;
-                    if(i.uv.x < a){
-                        col.a = 0;
-                    }
-                    else{
-                        float x = (2 * i.uv.x  - 2 * a) / b;
-                        col = tex2D(_MainTex, float2(x, i.uv.y));
-                    }
+                float tanTheta = tan(_Theta / 180 * 3.14);
+                float a = (1 - i.uv.y) * tanTheta;
+                float b = 0.5 - a;
+                if(i.uv.x < a || i.uv.x > 1 - a){
+                    col.a = 0;
                 }
                 else{
-                    col = tex2D(_MainTex, i.uv);
+                    float x = (i.uv.x - a) / (2 * b);
+                    col = tex2D(_MainTex, float2(x, i.uv.y));
                 }
                 return col;
             }
