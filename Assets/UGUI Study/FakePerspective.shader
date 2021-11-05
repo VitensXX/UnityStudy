@@ -14,7 +14,7 @@ Shader "Vitens/FakePerspective"
 
         [HideInInspector]_ColorMask ("Color Mask", Float) = 15
 
-        [Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip ("Use Alpha Clip", Float) = 0
+        [HideInInspector][Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip ("Use Alpha Clip", Float) = 0
         _Theta ("Theta", range(-90,90)) = 0 
         // _MaskStart("MaskStart", range(-1,1)) = 0
         // _MaxAlpha("Alpha", range(0,3)) = 1
