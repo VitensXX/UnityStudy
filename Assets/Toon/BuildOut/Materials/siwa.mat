@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: siwa
+  m_Shader: {fileID: 4800000, guid: 4bb04671945eef947b35305815ce4c1b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 6cffb7a5a9dbaf14695a8e1089aa2d60, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 2800000, guid: f1381cab360104042ac82a82213e5860, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ColorRange: 0.18
+    - _OriginLerp: 0.216
+    - _OutlienRangeLeft: 0.418
+    - _OutlienRangeRight: 0.35
+    - _Range: 1
+    - _RimPower: 1
+    - _SpecularRamp: 0.323
+    - _SpecularStrength: 0
+    - _Threshold: 0
+    m_Colors:
+    - _RimColor: {r: 0.05660379, g: 0.05660379, b: 0.05660379, a: 1}
+    - _RimColorLeft: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
+    - _RimColorRight: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
+    - _SWColor: {r: 0, g: 0, b: 0, a: 0}

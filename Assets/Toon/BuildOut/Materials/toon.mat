@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: toon
-  m_Shader: {fileID: 4800000, guid: e7ed28d9665b9cf4cb1c5333ca5dbc8f, type: 3}
+  m_Shader: {fileID: 4800000, guid: 3b411a7ff47b0a74e9a7960e81830c43, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -77,12 +77,14 @@ Material:
     - _OcclusionStrength: 1
     - _Outline: 0.1
     - _Parallax: 0.02
-    - _RimPower: 2
+    - _RimPower: 1.79
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpecularRamp: 0.223
     - _SpecularScale: 0.01
+    - _SpecularStrength: 0.092
     - _SrcBlend: 1
-    - _Threshold: 0
+    - _Threshold: 0.131
     - _UVSec: 0
     - _ZWrite: 1
     - _ZWrite2: 1

@@ -2,7 +2,7 @@
 {
     Properties
     {
-		_Outline("轮廓范围", float) = 2
+		_Outline("轮廓范围", float) = 3
 		_OutlineColor("轮廓颜色", Color) = (0, 0, 0, 1)
     }
     SubShader

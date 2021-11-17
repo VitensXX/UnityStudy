@@ -4,7 +4,7 @@
 	{
 		_MainTex("Texture", 2D) = "white" {}
 		_RimColor("rim color", color) = (1,1,1,1)
-		_RimPower("rom power", range(8 , 64)) = 8
+		_RimPower("rom power", range(1 , 64)) = 8
 		_Threshold("Threshold", Range(0, 1)) = 1
 		_SpecularStrength("_SpecularStrength", range(0,1)) = 0.2
 		_SpecularRamp("_SpecularRamp", range(0,1)) = 0.2
@@ -78,15 +78,15 @@
 					half NDotL = dot(worldViewDir, worldLightDir);
 					half v = smoothstep(0.5, 0.7, NDotL);
 					v = lerp(0.9, 1, v);
-					col *= v;
+					// col *= v;
 
 
 					//二值化高光
 					half NdotH = saturate(dot(worldNormal, worldHalfDir));
 					v = pow(NdotH, _RimPower); // 缩小夹角系数的值，由于NdotH在0-1，所以pow后会变得更小，_Smoothness参考值为8-64
-					v = step(_SpecularRamp, v); // 小于_SpecularRamp的值将为0，反之为1
+					v = step(v, _SpecularRamp); // 小于_SpecularRamp的值将为0，反之为1
 					v = v * _SpecularStrength; // 定义高光强度，参考值为0.2
-					col += col * v; // 在原有颜色的基础上叠加
+					col += col * v ; // 在原有颜色的基础上叠加
 
 					return col;
 				}
