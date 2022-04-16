@@ -25,6 +25,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Aspect: 0.5
-    - _R: 0.022
+    - _Fade: 0.00156
+    - _R: 0.067
     - _UVScale: 1.087
     m_Colors: []

@@ -7,6 +7,7 @@ Shader "Vitens/RoundCorner"
         [HideInInspector]_MainTex ("Texture", 2D) = "white" {}
         _R("圆角大小", range(0, 0.25)) = 0.1
         _Aspect("图片长宽比", float) = 1 
+        _Fade("Fade", range(0.0001, 0.01)) = 0.001
     }
     SubShader
     {
@@ -39,6 +40,7 @@ Shader "Vitens/RoundCorner"
             float2 _MainTex_TexelSize;
             fixed _R;
             float _Aspect;
+            float _Fade;
 
             v2f vert (appdata v)
             {
@@ -60,7 +62,7 @@ Shader "Vitens/RoundCorner"
                 half stepY = step(threshold, abs(uv.y));
 
                 //三个step只要有一个为0，则alpha就为1，所以需要裁减的部分三个step需要都为1
-                return 1 - stepX * stepY * stepL;
+                return 1 - stepX * stepY * stepL * abs(((l - _R) / _Fade));
             }
 
             fixed4 frag (v2f i) : SV_Target

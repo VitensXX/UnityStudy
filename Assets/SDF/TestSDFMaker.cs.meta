@@ -3,7 +3,10 @@ guid: 1b46a95bee3351d49824a1742b6f66c3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sorce: {instanceID: 0}
+  - dest: {instanceID: 0}
+  - sdfPreviewTexture: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
