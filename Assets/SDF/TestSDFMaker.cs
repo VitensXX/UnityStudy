@@ -34,8 +34,7 @@ public class TestSDFMaker : MonoBehaviour
     }
 
     public void Test(){
-        // SDFImageMaker.GenerateSDF(sorce,dest,distance);
-        // SDFImageMaker.GenerateBinaryImage(sorce);
+       
 
         width = sorce.width;
         height = sorce.height;
@@ -54,22 +53,25 @@ public class TestSDFMaker : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                int minDis = Distance(x, y);
-                sdfPreviewTexture.SetPixel(x,y, Color.white * (1 - (minDis / distance)));
+                float minDis = Distance(x, y);
+                sdfPreviewTexture.SetPixel(x,y, Color.white * (1 - minDis / distance));
             }
         }
         sdfPreviewTexture.Apply();
 
+
         Debug.LogError("Apply");
+        // SDFImageMaker.GenerateSDF(sorce,dest,distance);
+        SDFImageMaker.GenerateBinaryImage(sdfPreviewTexture);
     }
 
     bool IsPixelSafe(int x, int y){
         return x < width && x >= 0 && y < height && y >= 0;  
     }
 
-    int Distance(int x, int y){
+    float Distance(int x, int y){
         int halfDis = distance;
-        int minDis = distance;
+        float minDis = distance;
         for (int offsetX = -halfDis; offsetX < halfDis; offsetX++)
         {
             for (int offsetY = -halfDis; offsetY < halfDis; offsetY++)
@@ -81,8 +83,8 @@ public class TestSDFMaker : MonoBehaviour
                     continue;
                 }
                 
-                if(originAlpha[tempX,tempY] <= AlphaThreshold){
-                    int curDis = Mathf.Abs(offsetX) + Mathf.Abs(offsetY);
+                if(originAlpha[tempX,tempY] >= AlphaThreshold){
+                    float curDis = Mathf.Sqrt(Mathf.Abs(offsetX) * Mathf.Abs(offsetX) + Mathf.Abs(offsetY) * Mathf.Abs(offsetY));
                     if(minDis > curDis){
                         minDis = curDis;
                     }

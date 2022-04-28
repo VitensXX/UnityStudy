@@ -181,7 +181,8 @@ public class SDFImageMaker : MonoBehaviour
         {
             for (int y = 0; y < source.height; y++)
             {
-                target.SetPixel(x,y, source.GetPixel(x,y).a > 0.1f ? Color.white : Color.black);
+                // target.SetPixel(x,y, source.GetPixel(x,y).a > 0.1f ? Color.white : Color.black);
+                target.SetPixel(x,y, source.GetPixel(x,y));
             }
         }
 
