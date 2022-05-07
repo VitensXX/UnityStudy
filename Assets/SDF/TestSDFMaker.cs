@@ -5,11 +5,6 @@ using UnityEditor;
 
 public class TestSDFMaker : MonoBehaviour
 {
-    class Pixel{
-        public bool isIn;
-        public float distance;
-    }
-
     public Texture2D sorce;
     public Texture2D dest;
     public Texture2D sdfPreviewTexture;
@@ -63,6 +58,7 @@ public class TestSDFMaker : MonoBehaviour
         Debug.LogError("Apply");
         // SDFImageMaker.GenerateSDF(sorce,dest,distance);
         SDFImageMaker.GenerateBinaryImage(sdfPreviewTexture);
+        AssetDatabase.Refresh();
     }
 
     bool IsPixelSafe(int x, int y){
