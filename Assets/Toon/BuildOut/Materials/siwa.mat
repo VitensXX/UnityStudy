@@ -30,8 +30,8 @@ Material:
     m_Floats:
     - _ColorRange: 0.18
     - _OriginLerp: 0.216
-    - _OutlienRangeLeft: 0.418
-    - _OutlienRangeRight: 0.35
+    - _OutlienRangeLeft: 0.5
+    - _OutlienRangeRight: 0.4
     - _Range: 1
     - _RimPower: 1
     - _SpecularRamp: 0.323
