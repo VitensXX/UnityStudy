@@ -26,12 +26,14 @@ Material:
     m_Floats:
     - _Alpha: 3.9
     - _ColorMask: 15
-    - _Pow: 1
+    - _Pow: 6.45
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _UseUIAlphaClip: 0
+    - _V_Max: 0.7939453
+    - _V_Min: 0.66503906
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
