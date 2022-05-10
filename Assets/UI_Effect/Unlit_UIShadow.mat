@@ -26,7 +26,7 @@ Material:
     m_Floats:
     - _Alpha: 3.9
     - _ColorMask: 15
-    - _Pow: 5.47
+    - _Pow: 1
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0

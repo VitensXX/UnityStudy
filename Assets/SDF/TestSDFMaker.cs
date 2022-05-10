@@ -33,6 +33,7 @@ public class TestSDFMaker : MonoBehaviour
 
         width = sorce.width;
         height = sorce.height;
+        int distanceSq = distance * distance;
 
         originAlpha = new float[width, height];
         for (int y = 0; y < height; y++)
@@ -48,8 +49,8 @@ public class TestSDFMaker : MonoBehaviour
         {
             for (int x = 0; x < width; x++)
             {
-                float minDis = Distance(x, y);
-                sdfPreviewTexture.SetPixel(x,y, Color.white * (1 - minDis / distance));
+                float minDisSq = Distance(x, y);
+                sdfPreviewTexture.SetPixel(x,y, Color.white * (1 - minDisSq / distanceSq));
             }
         }
         sdfPreviewTexture.Apply();
@@ -65,9 +66,13 @@ public class TestSDFMaker : MonoBehaviour
         return x < width && x >= 0 && y < height && y >= 0;  
     }
 
-    float Distance(int x, int y){
+    int DistanceSq(int x, int y){
+        return Mathf.Abs(x) * Mathf.Abs(x) + Mathf.Abs(y) * Mathf.Abs(y);
+    }
+
+    int Distance(int x, int y){
         int halfDis = distance;
-        float minDis = distance;
+        int minDis = distance * distance;
         for (int offsetX = -halfDis; offsetX < halfDis; offsetX++)
         {
             for (int offsetY = -halfDis; offsetY < halfDis; offsetY++)
@@ -80,7 +85,7 @@ public class TestSDFMaker : MonoBehaviour
                 }
                 
                 if(originAlpha[tempX,tempY] >= AlphaThreshold){
-                    float curDis = Mathf.Sqrt(Mathf.Abs(offsetX) * Mathf.Abs(offsetX) + Mathf.Abs(offsetY) * Mathf.Abs(offsetY));
+                    int curDis = DistanceSq(offsetX, offsetY);
                     if(minDis > curDis){
                         minDis = curDis;
                     }
