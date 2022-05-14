@@ -13,8 +13,7 @@
         [HideInInspector][Toggle(UNITY_UI_ALPHACLIP)] _UseUIAlphaClip ("Use Alpha Clip", Float) = 0
 
         _Pow("Pow",range(1,10)) = 1
-        _V_Max("v max", float) = 1
-        _V_Min("v min", float) = 0
+        _UV_Range("UV Range", vector) = (0,1,0,1)
     }
 
     SubShader
@@ -82,7 +81,7 @@
             float4 _ClipRect;
             float4 _MainTex_ST;
             float _Pow;
-            float _V_Max, _V_Min;
+            float4 _UV_Range;
 
             v2f vert(appdata_t v)
             {
@@ -106,7 +105,7 @@
                 half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
 
                 // color.a *= pow(1 - IN.texcoord.y, _Pow);
-                color.a *= pow(lerp(1, 0, (_V_Max - IN.texcoord.y) / (_V_Max - _V_Min)), _Pow);
+                color.a *= pow(lerp(1, 0, (IN.texcoord.y - _UV_Range.z) / (_UV_Range.w - _UV_Range.z)), _Pow);
 
                 #ifdef UNITY_UI_CLIP_RECT
                 color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);
