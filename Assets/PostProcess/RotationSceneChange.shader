@@ -3,7 +3,6 @@
     Properties
     {
         _MainTex("Main Texture", 2D) = "white" {}
-        // _NoiseTex("Main Texture", 2D) = "white" {}
         _Factor("Factor", range(0,1)) = 0
     }
 
@@ -38,15 +37,8 @@
             fixed sinval, cosval;
             sincos(rot, sinval, cosval);
             float2x2  rotmatrix = float2x2(cosval, -sinval, sinval, cosval);
-            //旋转
             dir = mul(dir, rotmatrix);
-            //再平移回原位置
             dir += _Center.xy;
-            //采样noise图
-            // fixed4 noise = tex2D(_NoiseTex, i.uv);
-            // // noise的权重 = 参数 * 距离，越靠近外边的部分，扰动越严重
-            // float2 noiseOffset = noise.xy * _DistortStrength * dir;
-            //用偏移过的uv+扰动采样MainTex
             fixed4 color = tex2D(_MainTex, dir);
             color.a *= lerp(1,0, _Factor / _Strength);
             float lerpVal = _Factor / 10;

@@ -19,14 +19,10 @@ public class PostProcessSceneChange : MonoBehaviour
     public Vector2 center = new Vector2(0.5f, 0.5f);
     public Shader shader;
     Material _mat;
+    public AnimationCurve curve = AnimationCurve.Linear(0, 0, 1, 1);
     void Start()
     {
         _mat = new Material(shader);
-    }
-
-    void Update()
-    {
-        
     }
 
     private void OnRenderImage(RenderTexture src, RenderTexture dest) {
@@ -34,6 +30,21 @@ public class PostProcessSceneChange : MonoBehaviour
         _mat.SetFloat("_Strength", strength);
         _mat.SetVector("_Center", center);
         _mat.SetColor("_bgColor", color);
-        Graphics.Blit (src, _mat); 
+        src.wrapMode = TextureWrapMode.Mirror;
+        Graphics.Blit (src, dest, _mat); 
+    }
+
+    //转场开始
+    public void PlayForward(){
+        // factor 从0->1
+        // curve.Evaluate()
+    }
+
+    //转场结束
+    public void PlayBack(){
+        // factor 从1->0
+        
+        //结束时 让此脚本失效(enable false)
+
     }
 }
