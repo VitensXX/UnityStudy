@@ -26,8 +26,8 @@ Material:
     m_Floats:
     - _Contrast: 0
     - _Exposure: 1
-    - _HueOffset: -0.263
-    - _Saturation: 1.02
-    - _grade: 0.874
+    - _HueOffset: 0
+    - _Saturation: 1
+    - _grade: 0.828
     m_Colors:
     - _ColorFilter: {r: 1, g: 1, b: 1, a: 1}
