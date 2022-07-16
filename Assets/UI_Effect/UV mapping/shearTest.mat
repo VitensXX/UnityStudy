@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UV_UV Shear 4
+  m_Name: shearTest
   m_Shader: {fileID: 4800000, guid: 66c7fe7736dd8f8419f699e916e034a7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
