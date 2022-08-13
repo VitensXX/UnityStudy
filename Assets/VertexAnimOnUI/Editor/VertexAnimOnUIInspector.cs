@@ -17,12 +17,21 @@ public class VertexAnimOnUIInspector : RawImageEditor
     SerializedObject so;
     SerializedProperty _mesh;
     SerializedProperty _animTex;
+    SerializedProperty _shader;
+    SerializedProperty _scale;
+    SerializedProperty _flip;
+    SerializedProperty _posOffset;
+
 
     protected override void OnEnable() {
         base.OnEnable();
         so = new SerializedObject(target);
         _mesh = so.FindProperty("mesh");
         _animTex = so.FindProperty("animTex");
+        _shader = so.FindProperty("shader");
+        _scale = so.FindProperty("scale");
+        _flip = so.FindProperty("flip");
+        _posOffset = so.FindProperty("posOffset");
     }
 
 	public override void OnInspectorGUI()
@@ -37,6 +46,10 @@ public class VertexAnimOnUIInspector : RawImageEditor
         }
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.PropertyField(_animTex);
+        EditorGUILayout.PropertyField(_shader);
+        EditorGUILayout.PropertyField(_scale);
+        EditorGUILayout.PropertyField(_flip);
+        EditorGUILayout.PropertyField(_posOffset);
 
         so.ApplyModifiedProperties();
 	}
