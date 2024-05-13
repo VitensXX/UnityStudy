@@ -83,7 +83,8 @@ Shader "UI/VertexAnim"
             float4 _ClipRect;
             float4 _MainTex_ST;
 
-            v2f vert(appdata_t v, uint vid : SV_VertexID)
+            // v2f vert(appdata_t v, uint vid : SV_VertexID)//SV_VertexID semantic is not supported on GLES 2.0
+            v2f vert(appdata_t v)//SV_VertexID semantic is not supported on GLES 2.0
             {
                 v2f OUT;
                 UNITY_SETUP_INSTANCE_ID(v);
@@ -91,6 +92,10 @@ Shader "UI/VertexAnim"
 
                 float f = _Time.y;
 				fmod(f, 1.0);
+
+                //通过UV映射到烘焙时的顶点顺序，顶点数 7 * 9 （一行七个）
+                int vid = round(v.texcoord.x / 0.166) + round(v.texcoord.y / 0.125) * 7;
+
 				float animMap_x = (vid+0.5) * _AnimMap_TexelSize.x;
 				float animMap_y = f;
 				float4 pos = tex2Dlod(_AnimMap, float4(animMap_x, animMap_y, 0, 0));
@@ -124,4 +129,6 @@ Shader "UI/VertexAnim"
         ENDCG
         }
     }
+
+    FallBack "Diffuse"
 }

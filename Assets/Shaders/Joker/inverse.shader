@@ -3,7 +3,8 @@
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _Factor("Factor", range(0,1)) = 1
+        // _Factor("Factor", range(0,1)) = 1
+        _Mask("Mask(R)",2d) = "white" {}
     }
     SubShader
     {
@@ -31,7 +32,9 @@
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            float _Factor;
+            sampler2D _Mask;
+            float4 _Mask_ST;
+            // float _Factor;
             v2f vert (appdata v)
             {
                 v2f o;
@@ -44,7 +47,12 @@
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                col.rgb = lerp(col.rgb, 1-col.rgb, _Factor);
+                fixed4 origin = col;
+                col.rgb = 1-col.rgb;
+
+                fixed4 mask = tex2D(_Mask, i.uv);
+                col = lerp(origin, col, mask.r);
+
                 return col;
             }
             ENDCG
