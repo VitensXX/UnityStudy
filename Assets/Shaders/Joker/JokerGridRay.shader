@@ -8,7 +8,6 @@
         _ImageDetails("uvScale", vector) = (0,0,0,0)
         _RayOffset("rayOffset", vector) = (0,0,0,0)
         _GridSize("grid size", range(0,10)) = 0.5
-        _Color("color",color) = (1,1,1,1)
     }
     SubShader
     {
@@ -48,7 +47,6 @@
             float2 _RayOffset;
             float2 _ImageDetails;
             float _GridSize;
-            fixed4 _Color;
 
             v2f vert (appdata v)
             {

@@ -24,6 +24,7 @@
             #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
+            #include "JokerInclude.cginc"
 
             struct appdata
             {
@@ -37,11 +38,6 @@
                 float4 vertex : SV_POSITION;
             };
  
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
-            sampler2D _Mask;
-            float4 _Mask_ST;
-
             float4 _TextureDetails;
             float2 _RayOffset;
             float2 _ImageDetails;
@@ -59,14 +55,13 @@
             fixed4 RayEffect(fixed4 tex, half2 uv)
             {
                 uv = (uv*(_ImageDetails.xy) - _TextureDetails.xy*_TextureDetails.zw)/_TextureDetails.zw;
-                // uv-=0.5;
                 half2 adjusted_uv = uv - 0.5; 
                 adjusted_uv.x = adjusted_uv.x*_TextureDetails.z/_TextureDetails.w;
 
                 //圆
                 half fac = max
-                (min(2*sin((length(90*adjusted_uv) + _RayOffset.x*2) + 3*(1+0.8*cos(length(113.1121*adjusted_uv) - _RayOffset.x*3.121))) 
-                - 1 - max(5.-length(90*adjusted_uv), 0), 1), 0);
+                    (min(2*sin((length(90*adjusted_uv) + _RayOffset.x*2) + 3*(1+0.8*cos(length(113.1121*adjusted_uv) - _RayOffset.x*3.121))) 
+                    - 1 - max(5.-length(90*adjusted_uv), 0), 1), 0);
 
                 half2 rotater = half2(cos(_RayOffset.x*0.1221), sin(_RayOffset.x*0.3512));
 
@@ -94,9 +89,7 @@
                 tex.r = tex.r-delta + delta*maxfac*0.5;
                 tex.g = tex.g-delta + delta*maxfac*0.5;
                 tex.b = tex.b + delta*maxfac*1.9;
-                tex.a = min(tex.a, 0.3*tex.a + 0.9*min(1, maxfac*0.1));
-
-                // tex.rgb = max(origin.rgb,tex.rbg);
+                // tex.a = min(tex.a, 0.3*tex.a + 0.9*min(1, maxfac*0.1));
 
                 return tex;
             }
@@ -104,21 +97,14 @@
             
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                fixed4 test = fixed4( _LightCol.rgb * _Light ,1);
-                test = RayEffect(test, i.uv);
+                fixed4 ray = fixed4( _LightCol.rgb * _Light ,1);
+                ray = RayEffect(ray, i.uv);
                 
-                fixed4 mask = tex2D(_Mask, i.uv);
-                test *= mask.r;
-
-                col.rgb += test.rgb;
+                MASK(ray, i.uv)
+                
+                col.rgb += ray.rgb;
                 return col;
-
-
-                // fixed4 col = tex2D(_MainTex, i.uv);
-                // col = RayEffect(col, i.uv);
-                // return col;
             }
             ENDCG
         }
